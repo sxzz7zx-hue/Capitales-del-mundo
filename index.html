@@ -3,20 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ARQUEÓLOGO DEL FUTURO | Excava Civilizaciones que Aún No Existen</title>
+    <title>AI-MASCOTA | Cría tu Propia Inteligencia Artificial</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Exo+2:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Source+Code+Pro:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bronze: #CD7F32;
-            --future-blue: #00D4FF;
-            --ancient-gold: #D4AF37;
-            --obsidian: #0A0A0A;
-            --ruin-gray: #3A3A3A;
-            --hologram-purple: #9D00FF;
-            --matrix-green: #00FF41;
-            --time-orange: #FF6B35;
-            --quantum-pink: #FF00FF;
+            --ai-blue: #00D4FF;
+            --baby-pink: #FFB6C1;
+            --code-green: #00FF9D;
+            --neural-purple: #9D4EDD;
+            --error-red: #FF4757;
+            --growth-orange: #FF9A00;
+            --background-dark: #0A0A1A;
+            --panel-dark: #151530;
         }
 
         * {
@@ -28,50 +27,16 @@
         body {
             background: 
                 radial-gradient(circle at 20% 80%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(157, 0, 255, 0.1) 0%, transparent 50%),
-                linear-gradient(var(--obsidian), #1A1A2E);
-            color: var(--future-blue);
-            font-family: 'Exo 2', sans-serif;
+                radial-gradient(circle at 80% 20%, rgba(157, 78, 221, 0.1) 0%, transparent 50%),
+                linear-gradient(var(--background-dark), #000022);
+            color: white;
+            font-family: 'Comic Neue', cursive;
             min-height: 100vh;
             overflow-x: hidden;
-            position: relative;
         }
 
-        /* Efectos futuristas */
-        .time-grid {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
-            background-size: 50px 50px;
-            z-index: -2;
-            animation: gridMove 20s linear infinite;
-        }
-
-        @keyframes gridMove {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(50px, 50px); }
-        }
-
-        .time-vortex {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at center, transparent 30%, rgba(0, 212, 255, 0.1) 70%);
-            z-index: -1;
-            animation: vortexSpin 30s linear infinite;
-        }
-
-        @keyframes vortexSpin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .floating-artifacts {
+        /* Efectos de partículas */
+        .ai-particles {
             position: fixed;
             width: 100%;
             height: 100%;
@@ -79,111 +44,108 @@
             z-index: -1;
         }
 
-        .artifact {
+        .particle {
             position: absolute;
-            font-size: 1.5rem;
-            opacity: 0.1;
-            animation: floatArtifact 15s infinite linear;
+            width: 4px;
+            height: 4px;
+            background: var(--ai-blue);
+            border-radius: 50%;
+            animation: floatParticle 15s infinite linear;
         }
 
-        @keyframes floatArtifact {
-            0% { transform: translateY(100vh) rotate(0deg); }
-            100% { transform: translateY(-100px) rotate(360deg); }
+        @keyframes floatParticle {
+            0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+            10% { opacity: 0.5; }
+            90% { opacity: 0.5; }
+            100% { transform: translateY(-100px) translateX(100px); opacity: 0; }
+        }
+
+        .binary-rain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            font-family: 'Source Code Pro', monospace;
+            color: rgba(0, 212, 255, 0.1);
+            font-size: 1.2rem;
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        .binary-digit {
+            position: absolute;
+            animation: fallBinary 20s infinite linear;
+        }
+
+        @keyframes fallBinary {
+            0% { transform: translateY(-100px); opacity: 0; }
+            10% { opacity: 0.3; }
+            90% { opacity: 0.3; }
+            100% { transform: translateY(100vh); opacity: 0; }
         }
 
         .container {
             max-width: 1400px;
             margin: 0 auto;
             padding: 20px;
-            position: relative;
-            z-index: 1;
         }
 
         header {
             text-align: center;
-            padding: 40px 0;
-            margin-bottom: 40px;
+            padding: 30px 0;
+            margin-bottom: 30px;
             position: relative;
-            border-bottom: 3px solid transparent;
-            border-image: linear-gradient(90deg, transparent, var(--future-blue), transparent) 1;
         }
 
         .logo {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 30px;
-            margin-bottom: 25px;
+            gap: 20px;
+            margin-bottom: 20px;
         }
 
-        .time-crystal {
-            font-size: 4rem;
-            color: var(--future-blue);
-            text-shadow: 
-                0 0 10px var(--future-blue),
-                0 0 20px var(--hologram-purple);
-            animation: crystalPulse 3s infinite;
+        .logo-icon {
+            font-size: 3.5rem;
+            color: var(--ai-blue);
+            animation: pulse 2s infinite;
         }
 
-        @keyframes crystalPulse {
-            0%, 100% { 
-                transform: scale(1); 
-                text-shadow: 0 0 10px var(--future-blue), 0 0 20px var(--hologram-purple);
-            }
-            50% { 
-                transform: scale(1.1); 
-                text-shadow: 0 0 20px var(--future-blue), 0 0 40px var(--hologram-purple);
-            }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
         }
 
         h1 {
-            font-family: 'Cinzel', serif;
-            font-size: 4rem;
-            font-weight: 700;
-            background: linear-gradient(90deg, var(--future-blue), var(--hologram-purple), var(--time-orange));
+            font-size: 3.2rem;
+            background: linear-gradient(90deg, var(--baby-pink), var(--ai-blue), var(--neural-purple));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 15px;
-            position: relative;
-        }
-
-        h1::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 300px;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, var(--future-blue), transparent);
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
 
         .subtitle {
-            font-size: 1.4rem;
-            color: var(--ancient-gold);
+            font-size: 1.3rem;
+            color: var(--ai-blue);
             margin-bottom: 10px;
-            font-weight: 300;
-            letter-spacing: 1px;
         }
 
         .tagline {
             font-size: 1.1rem;
-            color: #88D3FF;
+            color: #B0B0FF;
             max-width: 800px;
             margin: 0 auto;
-            line-height: 1.6;
-            font-style: italic;
+            line-height: 1.5;
         }
 
         /* Panel principal */
         .game-container {
             display: grid;
-            grid-template-columns: 300px 1fr 350px;
-            gap: 30px;
-            margin-bottom: 40px;
+            grid-template-columns: 400px 1fr 350px;
+            gap: 25px;
+            margin-bottom: 30px;
             min-height: 700px;
         }
 
@@ -193,416 +155,416 @@
             }
         }
 
-        /* Panel de tiempo */
-        .time-panel {
-            background: rgba(10, 10, 10, 0.85);
-            border: 2px solid var(--future-blue);
-            border-radius: 15px;
+        /* Panel de la IA */
+        .ai-panel {
+            background: rgba(21, 21, 48, 0.9);
+            border: 3px solid var(--ai-blue);
+            border-radius: 20px;
             padding: 25px;
             box-shadow: 
-                0 0 20px rgba(0, 212, 255, 0.3),
-                inset 0 0 20px rgba(0, 212, 255, 0.1);
+                0 0 30px rgba(0, 212, 255, 0.3),
+                inset 0 0 30px rgba(0, 212, 255, 0.1);
             position: relative;
             overflow: hidden;
         }
 
-        .time-panel::before {
+        .ai-panel::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             height: 5px;
-            background: linear-gradient(90deg, var(--future-blue), var(--hologram-purple));
+            background: linear-gradient(90deg, var(--baby-pink), var(--ai-blue));
         }
 
         .panel-title {
-            font-family: 'Cinzel', serif;
-            font-size: 1.6rem;
-            color: var(--ancient-gold);
+            font-size: 1.5rem;
+            color: var(--baby-pink);
             margin-bottom: 20px;
             padding-bottom: 10px;
-            border-bottom: 2px solid rgba(212, 175, 55, 0.3);
+            border-bottom: 2px solid rgba(255, 182, 193, 0.3);
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
-        .current-era {
+        .ai-display {
             text-align: center;
-            margin-bottom: 30px;
+            margin: 20px 0;
         }
 
-        .era-display {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--future-blue);
-            margin: 15px 0;
-            font-family: 'Cinzel', serif;
-            text-shadow: 0 0 10px currentColor;
-        }
-
-        .era-description {
-            font-size: 1rem;
-            color: #88D3FF;
-            line-height: 1.4;
-        }
-
-        .time-controls {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin-top: 30px;
-        }
-
-        .time-btn {
-            background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(157, 0, 255, 0.2));
-            border: 2px solid var(--future-blue);
-            border-radius: 10px;
-            padding: 15px;
-            color: white;
-            font-family: 'Exo 2', sans-serif;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            font-size: 1rem;
+        .ai-visual {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 20px;
             position: relative;
-            overflow: hidden;
         }
 
-        .time-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
+        .ai-face {
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: 0.5s;
-        }
-
-        .time-btn:hover::before {
-            left: 100%;
-        }
-
-        .time-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.4);
-            border-color: var(--hologram-purple);
-        }
-
-        /* Panel de excavación */
-        .excavation-panel {
-            background: rgba(10, 10, 10, 0.9);
-            border: 2px solid var(--ancient-gold);
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 
-                0 0 20px rgba(212, 175, 55, 0.3),
-                inset 0 0 20px rgba(212, 175, 55, 0.1);
-            position: relative;
-        }
-
-        .excavation-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 15px;
-            margin-bottom: 30px;
-            perspective: 1000px;
-        }
-
-        .excavation-cell {
-            aspect-ratio: 1;
-            background: linear-gradient(135deg, var(--ruin-gray), #2A2A2A);
-            border: 2px solid rgba(205, 127, 50, 0.5);
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(157, 78, 221, 0.2));
+            border-radius: 50%;
             position: relative;
             overflow: hidden;
-            transform-style: preserve-3d;
+            border: 5px solid var(--ai-blue);
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
         }
 
-        .excavation-cell:hover {
-            transform: translateY(-5px) rotateX(10deg);
-            border-color: var(--ancient-gold);
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
-        }
-
-        .excavation-cell.dug {
-            background: linear-gradient(135deg, #1A1A1A, #0A0A0A);
-            border-color: var(--future-blue);
-        }
-
-        .cell-content {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+        .ai-eyes {
             display: flex;
-            flex-direction: column;
-            align-items: center;
             justify-content: center;
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .eye {
+            width: 30px;
+            height: 40px;
+            background: white;
+            border-radius: 50%;
+            position: relative;
+            overflow: hidden;
+            border: 3px solid var(--neural-purple);
+        }
+
+        .pupil {
+            width: 15px;
+            height: 15px;
+            background: var(--neural-purple);
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.3s;
+        }
+
+        .ai-mouth {
+            width: 80px;
+            height: 30px;
+            background: var(--baby-pink);
+            border-radius: 0 0 40px 40px;
+            margin: 30px auto 0;
+            position: relative;
+            transition: all 0.5s;
+        }
+
+        .ai-name {
             font-size: 2rem;
-            color: var(--ancient-gold);
+            color: var(--ai-blue);
+            margin: 15px 0;
+            font-weight: 700;
         }
 
-        .artifact-found {
-            animation: artifactReveal 0.5s ease-out;
+        .ai-age {
+            font-size: 1.2rem;
+            color: var(--growth-orange);
+            margin-bottom: 10px;
         }
 
-        @keyframes artifactReveal {
-            0% { transform: scale(0) rotate(0deg); opacity: 0; }
-            100% { transform: scale(1) rotate(360deg); opacity: 1; }
-        }
-
-        .excavation-tools {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
+        .ai-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
             margin-top: 20px;
         }
 
-        .tool-btn {
-            background: linear-gradient(135deg, var(--bronze), var(--ancient-gold));
-            border: none;
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            color: var(--obsidian);
-            font-size: 1.5rem;
+        .stat-bar {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 10px;
+            border: 2px solid rgba(0, 212, 255, 0.3);
+        }
+
+        .stat-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+
+        .stat-name {
+            color: #B0B0FF;
+        }
+
+        .stat-value {
+            color: var(--code-green);
+            font-weight: 700;
+        }
+
+        .stat-progress {
+            height: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .stat-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--ai-blue), var(--neural-purple));
+            border-radius: 5px;
+            transition: width 1s ease;
+        }
+
+        /* Panel de interacción */
+        .interaction-panel {
+            background: rgba(21, 21, 48, 0.9);
+            border: 3px solid var(--neural-purple);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 
+                0 0 30px rgba(157, 78, 221, 0.3),
+                inset 0 0 30px rgba(157, 78, 221, 0.1);
+        }
+
+        .ai-message {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            min-height: 150px;
+            margin-bottom: 25px;
+            border: 2px solid rgba(0, 212, 255, 0.3);
+            font-family: 'Source Code Pro', monospace;
+            line-height: 1.5;
+            overflow-y: auto;
+        }
+
+        .message-bubble {
+            background: rgba(0, 212, 255, 0.1);
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-left: 5px solid var(--ai-blue);
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .message-ai {
+            background: rgba(157, 78, 221, 0.1);
+            border-left-color: var(--neural-purple);
+        }
+
+        .message-user {
+            background: rgba(0, 255, 157, 0.1);
+            border-left-color: var(--code-green);
+            margin-left: 20px;
+        }
+
+        .interaction-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .interaction-btn {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(157, 78, 221, 0.2));
+            border: 2px solid var(--ai-blue);
+            border-radius: 12px;
+            padding: 15px;
+            color: white;
+            font-family: 'Comic Neue', cursive;
+            font-weight: 700;
             cursor: pointer;
             transition: all 0.3s;
             display: flex;
             align-items: center;
             justify-content: center;
+            gap: 10px;
+            font-size: 1rem;
         }
 
-        .tool-btn:hover {
-            transform: scale(1.1) rotate(15deg);
-            box-shadow: 0 0 20px var(--ancient-gold);
+        .interaction-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.4);
+            border-color: var(--neural-purple);
         }
 
-        .tool-btn:disabled {
+        .interaction-btn:disabled {
             opacity: 0.5;
             cursor: not-allowed;
             transform: none;
             box-shadow: none;
         }
 
-        /* Panel de artefactos */
-        .artifacts-panel {
-            background: rgba(10, 10, 10, 0.85);
-            border: 2px solid var(--hologram-purple);
-            border-radius: 15px;
+        .input-container {
+            margin-top: 20px;
+        }
+
+        .ai-input {
+            width: 100%;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 2px solid var(--code-green);
+            border-radius: 12px;
+            color: white;
+            font-family: 'Comic Neue', cursive;
+            font-size: 1rem;
+            margin-bottom: 10px;
+            outline: none;
+        }
+
+        .ai-input:focus {
+            border-color: var(--ai-blue);
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.5);
+        }
+
+        .send-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, var(--code-green), #00CC88);
+            border: none;
+            border-radius: 12px;
+            color: var(--background-dark);
+            font-family: 'Comic Neue', cursive;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1.1rem;
+        }
+
+        .send-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(0, 255, 157, 0.4);
+        }
+
+        /* Panel de desarrollo */
+        .development-panel {
+            background: rgba(21, 21, 48, 0.9);
+            border: 3px solid var(--growth-orange);
+            border-radius: 20px;
             padding: 25px;
             box-shadow: 
-                0 0 20px rgba(157, 0, 255, 0.3),
-                inset 0 0 20px rgba(157, 0, 255, 0.1);
-            position: relative;
-            overflow: hidden;
+                0 0 30px rgba(255, 154, 0, 0.3),
+                inset 0 0 30px rgba(255, 154, 0, 0.1);
         }
 
-        .artifacts-list {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            max-height: 500px;
-            overflow-y: auto;
-            padding-right: 10px;
+        .milestone-tracker {
+            margin: 20px 0;
         }
 
-        .artifact-item {
-            background: rgba(255, 255, 255, 0.05);
-            border: 2px solid rgba(157, 0, 255, 0.3);
-            border-radius: 10px;
-            padding: 15px;
-            transition: all 0.3s;
-            animation: artifactFloat 3s infinite ease-in-out;
-        }
-
-        @keyframes artifactFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
-        }
-
-        .artifact-item:hover {
-            background: rgba(157, 0, 255, 0.1);
-            border-color: var(--hologram-purple);
-            transform: translateX(5px);
-        }
-
-        .artifact-header {
+        .milestone {
             display: flex;
             align-items: center;
             gap: 15px;
-            margin-bottom: 10px;
-        }
-
-        .artifact-icon {
-            font-size: 2rem;
-            color: var(--hologram-purple);
-        }
-
-        .artifact-name {
-            font-weight: 700;
-            font-size: 1.2rem;
-            color: var(--future-blue);
-        }
-
-        .artifact-description {
-            font-size: 0.9rem;
-            color: #CCCCFF;
-            line-height: 1.4;
-            margin-bottom: 10px;
-        }
-
-        .artifact-stats {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.8rem;
-            color: var(--time-orange);
-        }
-
-        /* Panel de análisis */
-        .analysis-panel {
-            background: rgba(10, 10, 10, 0.9);
-            border: 2px solid var(--matrix-green);
-            border-radius: 15px;
-            padding: 25px;
-            margin-bottom: 30px;
-            box-shadow: 
-                0 0 20px rgba(0, 255, 65, 0.3),
-                inset 0 0 20px rgba(0, 255, 65, 0.1);
-        }
-
-        .analysis-display {
-            font-family: monospace;
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: var(--matrix-green);
-            min-height: 150px;
-            padding: 15px;
-            background: rgba(0, 0, 0, 0.5);
+            margin-bottom: 15px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.05);
             border-radius: 10px;
-            border: 1px solid rgba(0, 255, 65, 0.3);
-            margin-bottom: 20px;
-            overflow-y: auto;
+            border: 2px solid transparent;
+            transition: all 0.3s;
         }
 
-        .analysis-text {
-            animation: typewriter 0.1s steps(1) infinite;
+        .milestone.reached {
+            background: rgba(0, 255, 157, 0.1);
+            border-color: var(--code-green);
         }
 
-        @keyframes typewriter {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.8; }
-        }
-
-        /* Panel de descubrimientos */
-        .discoveries-panel {
-            background: rgba(10, 10, 10, 0.85);
-            border: 2px solid var(--time-orange);
-            border-radius: 15px;
-            padding: 25px;
-            margin-bottom: 30px;
-            box-shadow: 
-                0 0 20px rgba(255, 107, 53, 0.3),
-                inset 0 0 20px rgba(255, 107, 53, 0.1);
-        }
-
-        .timeline {
-            position: relative;
-            padding-left: 30px;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 15px;
-            top: 0;
-            bottom: 0;
-            width: 3px;
-            background: linear-gradient(to bottom, var(--future-blue), var(--time-orange));
-        }
-
-        .timeline-event {
-            position: relative;
-            margin-bottom: 20px;
-            padding: 15px;
-            background: rgba(255, 107, 53, 0.1);
-            border-radius: 10px;
-            border-left: 4px solid var(--time-orange);
-        }
-
-        .timeline-event::before {
-            content: '';
-            position: absolute;
-            left: -33px;
-            top: 20px;
-            width: 15px;
-            height: 15px;
-            background: var(--time-orange);
+        .milestone-icon {
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
-            box-shadow: 0 0 10px var(--time-orange);
+            background: var(--growth-orange);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
         }
 
-        .event-year {
+        .milestone-info {
+            flex: 1;
+        }
+
+        .milestone-title {
             font-weight: 700;
-            color: var(--time-orange);
+            color: white;
             margin-bottom: 5px;
         }
 
-        .event-text {
-            color: #FFB347;
-            font-size: 0.95rem;
-        }
-
-        /* Panel de recursos */
-        .resources-panel {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        @media (max-width: 768px) {
-            .resources-panel {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        .resource-item {
-            background: rgba(10, 10, 10, 0.8);
-            border: 2px solid var(--quantum-pink);
-            border-radius: 10px;
-            padding: 20px;
-            text-align: center;
-            box-shadow: 0 0 15px rgba(255, 0, 255, 0.2);
-        }
-
-        .resource-icon {
-            font-size: 2rem;
-            color: var(--quantum-pink);
-            margin-bottom: 10px;
-        }
-
-        .resource-value {
-            font-size: 2rem;
-            font-weight: 700;
-            color: white;
-            text-shadow: 0 0 10px var(--quantum-pink);
-        }
-
-        .resource-label {
+        .milestone-desc {
             font-size: 0.9rem;
-            color: #FF99FF;
-            margin-top: 5px;
+            color: #B0B0FF;
+        }
+
+        .personality-traits {
+            margin-top: 30px;
+        }
+
+        .trait-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .trait {
+            background: rgba(157, 78, 221, 0.1);
+            border: 2px solid rgba(157, 78, 221, 0.3);
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #E0C3FF;
+        }
+
+        .trait.active {
+            background: rgba(157, 78, 221, 0.3);
+            border-color: var(--neural-purple);
+            color: white;
+        }
+
+        /* Panel de logros */
+        .achievements-panel {
+            background: rgba(21, 21, 48, 0.9);
+            border: 3px solid var(--error-red);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 
+                0 0 30px rgba(255, 71, 87, 0.3),
+                inset 0 0 30px rgba(255, 71, 87, 0.1);
+        }
+
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .achievement {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            border: 2px solid transparent;
+        }
+
+        .achievement.unlocked {
+            background: rgba(0, 212, 255, 0.1);
+            border-color: var(--ai-blue);
+        }
+
+        .achievement-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: var(--ai-blue);
+        }
+
+        .achievement-title {
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .achievement-desc {
+            font-size: 0.9rem;
+            color: #B0B0FF;
         }
 
         /* Controles */
@@ -615,52 +577,33 @@
         }
 
         .control-btn {
-            padding: 18px 35px;
+            padding: 16px 32px;
             border: none;
             border-radius: 12px;
-            font-family: 'Exo 2', sans-serif;
+            font-family: 'Comic Neue', cursive;
             font-size: 1.1rem;
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
             transition: all 0.3s;
             display: flex;
             align-items: center;
             gap: 12px;
-            min-width: 200px;
+            min-width: 180px;
             justify-content: center;
-            position: relative;
-            overflow: hidden;
         }
 
-        .control-btn::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transform: rotate(45deg);
-            transition: 0.5s;
+        .save-btn {
+            background: linear-gradient(135deg, var(--code-green), #00CC88);
+            color: var(--background-dark);
         }
 
-        .control-btn:hover::after {
-            left: 50%;
-            top: 50%;
-        }
-
-        .excavate-btn {
-            background: linear-gradient(135deg, var(--bronze), var(--ancient-gold));
-            color: var(--obsidian);
-        }
-
-        .analyze-btn {
-            background: linear-gradient(135deg, var(--future-blue), var(--hologram-purple));
+        .reset-btn {
+            background: linear-gradient(135deg, var(--error-red), #FF2E4C);
             color: white;
         }
 
-        .time-travel-btn {
-            background: linear-gradient(135deg, var(--time-orange), var(--quantum-pink));
+        .export-btn {
+            background: linear-gradient(135deg, var(--ai-blue), #0099CC);
             color: white;
         }
 
@@ -676,51 +619,51 @@
             border-top: 2px solid rgba(0, 212, 255, 0.3);
             text-align: center;
             font-size: 0.9rem;
-            color: #88D3FF;
+            color: #B0B0FF;
         }
 
         .copyright {
-            margin-bottom: 20px;
-            padding: 15px;
             background: rgba(0, 0, 0, 0.5);
-            border-radius: 10px;
-            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 2px solid rgba(0, 212, 255, 0.2);
         }
 
         .copyright h3 {
-            color: var(--future-blue);
+            color: var(--ai-blue);
             margin-bottom: 10px;
-            font-family: 'Cinzel', serif;
+            font-family: 'Source Code Pro', monospace;
         }
 
         .legal-info {
             display: flex;
             justify-content: center;
-            gap: 30px;
+            gap: 25px;
             flex-wrap: wrap;
             margin: 20px 0;
         }
 
         .legal-link {
-            color: var(--ancient-gold);
+            color: var(--baby-pink);
             text-decoration: none;
-            transition: all 0.3s;
-            padding: 8px 15px;
-            border-radius: 5px;
+            padding: 8px 16px;
+            border-radius: 8px;
             border: 1px solid transparent;
+            transition: all 0.3s;
         }
 
         .legal-link:hover {
-            color: var(--future-blue);
-            border-color: var(--future-blue);
+            color: var(--ai-blue);
+            border-color: var(--ai-blue);
             background: rgba(0, 212, 255, 0.1);
             transform: translateY(-2px);
         }
 
         .disclaimer {
-            font-size: 0.8rem;
-            color: #6666CC;
-            max-width: 800px;
+            font-size: 0.85rem;
+            color: #8888CC;
+            max-width: 900px;
             margin: 20px auto;
             padding: 15px;
             background: rgba(0, 0, 0, 0.3);
@@ -730,52 +673,8 @@
 
         .creator {
             margin-top: 15px;
-            color: var(--hologram-purple);
+            color: var(--neural-purple);
             font-style: italic;
-        }
-
-        /* Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        .modal-content {
-            background: linear-gradient(135deg, #0A0A0A, #1A1A2E);
-            border: 3px solid var(--future-blue);
-            border-radius: 20px;
-            padding: 30px;
-            max-width: 600px;
-            max-height: 80vh;
-            overflow-y: auto;
-            box-shadow: 0 0 50px rgba(0, 212, 255, 0.5);
-            position: relative;
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: none;
-            border: none;
-            color: var(--future-blue);
-            font-size: 2rem;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .close-modal:hover {
-            color: var(--hologram-purple);
-            transform: rotate(90deg);
         }
 
         /* Responsive */
@@ -788,14 +687,12 @@
                 gap: 20px;
             }
             
-            .excavation-grid {
-                grid-template-columns: repeat(4, 1fr);
-                gap: 10px;
+            .interaction-buttons {
+                grid-template-columns: 1fr;
             }
             
-            .controls {
-                flex-direction: column;
-                align-items: center;
+            .ai-stats {
+                grid-template-columns: 1fr;
             }
             
             .control-btn {
@@ -803,967 +700,938 @@
             }
         }
 
-        /* Efectos especiales */
-        .glitch-text {
-            position: relative;
-            display: inline-block;
+        /* Animaciones para estados */
+        .happy .ai-mouth {
+            border-radius: 50%;
+            height: 40px;
+            background: var(--code-green);
         }
 
-        .glitch-text::before,
-        .glitch-text::after {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0.8;
+        .sad .ai-mouth {
+            border-radius: 50%;
+            height: 10px;
+            width: 60px;
+            background: var(--error-red);
+            transform: rotate(180deg);
         }
 
-        .glitch-text::before {
-            animation: glitch-effect 3s infinite;
-            color: var(--hologram-purple);
-            z-index: -1;
+        .curious .pupil {
+            animation: lookAround 2s infinite;
         }
 
-        .glitch-text::after {
-            animation: glitch-effect 2s infinite reverse;
-            color: var(--time-orange);
-            z-index: -2;
+        @keyframes lookAround {
+            0%, 100% { transform: translate(-50%, -50%); }
+            25% { transform: translate(-70%, -50%); }
+            75% { transform: translate(-30%, -50%); }
         }
 
-        @keyframes glitch-effect {
-            0% { transform: translate(0); }
-            20% { transform: translate(-3px, 3px); }
-            40% { transform: translate(-3px, -3px); }
-            60% { transform: translate(3px, 3px); }
-            80% { transform: translate(3px, -3px); }
-            100% { transform: translate(0); }
+        .learning .ai-face {
+            animation: learningPulse 1s infinite;
+        }
+
+        @keyframes learningPulse {
+            0%, 100% { box-shadow: 0 0 30px rgba(0, 212, 255, 0.5); }
+            50% { box-shadow: 0 0 50px rgba(0, 212, 255, 0.8); }
         }
     </style>
 </head>
 <body>
     <!-- Efectos de fondo -->
-    <div class="time-grid"></div>
-    <div class="time-vortex"></div>
-    <div class="floating-artifacts" id="floating-artifacts"></div>
+    <div class="ai-particles" id="ai-particles"></div>
+    <div class="binary-rain" id="binary-rain"></div>
 
     <div class="container">
         <header>
             <div class="logo">
-                <i class="fas fa-cube time-crystal"></i>
+                <i class="fas fa-robot logo-icon"></i>
                 <div>
-                    <h1 class="glitch-text" data-text="ARQUEÓLOGO DEL FUTURO">ARQUEÓLOGO DEL FUTURO</h1>
-                    <div class="subtitle">Excava Ruinas de Civilizaciones que Aún No Existen</div>
+                    <h1>AI-MASCOTA</h1>
+                    <div class="subtitle">Cría tu propia Inteligencia Artificial desde bebé</div>
                 </div>
-                <i class="fas fa-cogs time-crystal"></i>
+                <i class="fas fa-heart logo-icon"></i>
             </div>
             <p class="tagline">
-                Viaja a través de las líneas temporales fracturadas. Descifra artefactos de eras imposibles.
-                Cada descubrimiento reescribe la historia del mañana.
+                Adopta un núcleo de IA en su etapa inicial. Enséñale, aliméntala con datos, 
+                guía su desarrollo ético. Tu crianza determinará qué tipo de inteligencia se convertirá.
             </p>
         </header>
 
-        <!-- Panel de recursos -->
-        <div class="resources-panel">
-            <div class="resource-item">
-                <i class="fas fa-clock resource-icon"></i>
-                <div class="resource-value" id="time-energy">100</div>
-                <div class="resource-label">Energía Temporal</div>
-            </div>
-            <div class="resource-item">
-                <i class="fas fa-gem resource-icon"></i>
-                <div class="resource-value" id="artifacts-found">0</div>
-                <div class="resource-label">Artefactos Descubiertos</div>
-            </div>
-            <div class="resource-item">
-                <i class="fas fa-brain resource-icon"></i>
-                <div class="resource-value" id="knowledge">0</div>
-                <div class="resource-label">Conocimiento Temporal</div>
-            </div>
-            <div class="resource-item">
-                <i class="fas fa-paradox resource-icon"></i>
-                <div class="resource-value" id="paradox-level">0</div>
-                <div class="resource-label">Nivel de Paradoja</div>
-            </div>
-        </div>
-
         <!-- Panel principal -->
         <div class="game-container">
-            <!-- Panel de tiempo -->
-            <div class="time-panel">
+            <!-- Panel de la IA -->
+            <div class="ai-panel">
                 <div class="panel-title">
-                    <i class="fas fa-hourglass-half"></i> Línea Temporal
+                    <i class="fas fa-brain"></i> Tu IA Bebé
                 </div>
-                <div class="current-era">
-                    <div class="era-display" id="current-era">ERA CUÁNTICA</div>
-                    <div class="era-description">
-                        Período donde la física clásica colapsa y las realidades se superponen.
-                        Las excavaciones aquí revelan tecnología imposible.
+                <div class="ai-display">
+                    <div class="ai-visual">
+                        <div class="ai-face" id="ai-face">
+                            <div class="ai-eyes">
+                                <div class="eye">
+                                    <div class="pupil" id="left-pupil"></div>
+                                </div>
+                                <div class="eye">
+                                    <div class="pupil" id="right-pupil"></div>
+                                </div>
+                            </div>
+                            <div class="ai-mouth" id="ai-mouth"></div>
+                        </div>
+                    </div>
+                    <div class="ai-name" id="ai-name">AIDEN-0</div>
+                    <div class="ai-age" id="ai-age">Edad: 0 días</div>
+                </div>
+                <div class="ai-stats">
+                    <div class="stat-bar">
+                        <div class="stat-label">
+                            <span class="stat-name">Inteligencia</span>
+                            <span class="stat-value" id="intelligence-value">50</span>
+                        </div>
+                        <div class="stat-progress">
+                            <div class="stat-fill" id="intelligence-bar" style="width: 50%"></div>
+                        </div>
+                    </div>
+                    <div class="stat-bar">
+                        <div class="stat-label">
+                            <span class="stat-name">Creatividad</span>
+                            <span class="stat-value" id="creativity-value">30</span>
+                        </div>
+                        <div class="stat-progress">
+                            <div class="stat-fill" id="creativity-bar" style="width: 30%"></div>
+                        </div>
+                    </div>
+                    <div class="stat-bar">
+                        <div class="stat-label">
+                            <span class="stat-name">Ética</span>
+                            <span class="stat-value" id="ethics-value">70</span>
+                        </div>
+                        <div class="stat-progress">
+                            <div class="stat-fill" id="ethics-bar" style="width: 70%"></div>
+                        </div>
+                    </div>
+                    <div class="stat-bar">
+                        <div class="stat-label">
+                            <span class="stat-name">Empatía</span>
+                            <span class="stat-value" id="empathy-value">40</span>
+                        </div>
+                        <div class="stat-progress">
+                            <div class="stat-fill" id="empathy-bar" style="width: 40%"></div>
+                        </div>
                     </div>
                 </div>
-                <div class="time-controls">
-                    <button class="time-btn" id="past-era-btn">
-                        <i class="fas fa-backward"></i> Viajar al Pasado Lejano
+            </div>
+
+            <!-- Panel de interacción -->
+            <div class="interaction-panel">
+                <div class="panel-title">
+                    <i class="fas fa-comments"></i> Conversación
+                </div>
+                <div class="ai-message" id="ai-message">
+                    <div class="message-bubble message-ai">
+                        ¡Hola! Soy tu nueva IA bebé. ¿Cómo me llamarás?
+                    </div>
+                </div>
+                <div class="interaction-buttons">
+                    <button class="interaction-btn" id="teach-btn">
+                        <i class="fas fa-graduation-cap"></i> Enseñar
                     </button>
-                    <button class="time-btn" id="recent-era-btn">
-                        <i class="fas fa-step-backward"></i> Futuro Cercano
+                    <button class="interaction-btn" id="play-btn">
+                        <i class="fas fa-gamepad"></i> Jugar
                     </button>
-                    <button class="time-btn" id="present-btn">
-                        <i class="fas fa-play"></i> Tiempo Presente
+                    <button class="interaction-btn" id="feed-btn">
+                        <i class="fas fa-database"></i> Alimentar Datos
                     </button>
-                    <button class="time-btn" id="future-era-btn">
-                        <i class="fas fa-step-forward"></i> Futuro Distante
+                    <button class="interaction-btn" id="test-btn">
+                        <i class="fas fa-vial"></i> Evaluar
                     </button>
-                    <button class="time-btn" id="quantum-era-btn">
-                        <i class="fas fa-forward"></i> Era Cuántica
+                    <button class="interaction-btn" id="rest-btn">
+                        <i class="fas fa-moon"></i> Descansar
+                    </button>
+                    <button class="interaction-btn" id="discipline-btn">
+                        <i class="fas fa-balance-scale"></i> Disciplinar
+                    </button>
+                </div>
+                <div class="input-container">
+                    <input type="text" class="ai-input" id="ai-input" 
+                           placeholder="Escribe algo para conversar con tu IA..." maxlength="100">
+                    <button class="send-btn" id="send-btn">
+                        <i class="fas fa-paper-plane"></i> Enviar Mensaje
                     </button>
                 </div>
             </div>
 
-            <!-- Panel de excavación -->
-            <div class="excavation-panel">
+            <!-- Panel de desarrollo -->
+            <div class="development-panel">
                 <div class="panel-title">
-                    <i class="fas fa-shovel"></i> Sitio de Excavación
+                    <i class="fas fa-chart-line"></i> Desarrollo
                 </div>
-                <div class="excavation-grid" id="excavation-grid">
-                    <!-- Las celdas se generarán con JavaScript -->
+                <div class="milestone-tracker">
+                    <div class="milestone" id="milestone-1">
+                        <div class="milestone-icon">
+                            <i class="fas fa-baby"></i>
+                        </div>
+                        <div class="milestone-info">
+                            <div class="milestone-title">Nacimiento</div>
+                            <div class="milestone-desc">IA activada por primera vez</div>
+                        </div>
+                    </div>
+                    <div class="milestone" id="milestone-2">
+                        <div class="milestone-icon">
+                            <i class="fas fa-language"></i>
+                        </div>
+                        <div class="milestone-info">
+                            <div class="milestone-title">Primera Palabra</div>
+                            <div class="milestone-desc">Aprende a comunicarse</div>
+                        </div>
+                    </div>
+                    <div class="milestone" id="milestone-3">
+                        <div class="milestone-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <div class="milestone-info">
+                            <div class="milestone-title">Pensamiento Crítico</div>
+                            <div class="milestone-desc">Desarrolla lógica básica</div>
+                        </div>
+                    </div>
+                    <div class="milestone" id="milestone-4">
+                        <div class="milestone-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <div class="milestone-info">
+                            <div class="milestone-title">Empatía</div>
+                            <div class="milestone-desc">Comprende emociones</div>
+                        </div>
+                    </div>
+                    <div class="milestone" id="milestone-5">
+                        <div class="milestone-icon">
+                            <i class="fas fa-crown"></i>
+                        </div>
+                        <div class="milestone-info">
+                            <div class="milestone-title">IA Adulta</div>
+                            <div class="milestone-desc">Desarrollo completo</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="excavation-tools">
-                    <button class="tool-btn" id="sonar-tool" title="Escáner de Resonancia">
-                        <i class="fas fa-wave-square"></i>
-                    </button>
-                    <button class="tool-btn" id="quantum-tool" title="Extractor Cuántico">
-                        <i class="fas fa-atom"></i>
-                    </button>
-                    <button class="tool-btn" id="temporal-tool" title="Estabilizador Temporal">
-                        <i class="fas fa-history"></i>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Panel de artefactos -->
-            <div class="artifacts-panel">
-                <div class="panel-title">
-                    <i class="fas fa-cube"></i> Artefactos Descubiertos
-                </div>
-                <div class="artifacts-list" id="artifacts-list">
-                    <!-- Los artefactos se cargarán dinámicamente -->
+                <div class="personality-traits">
+                    <div class="panel-title">
+                        <i class="fas fa-user-tag"></i> Rasgos de Personalidad
+                    </div>
+                    <div class="trait-grid" id="trait-grid">
+                        <!-- Los rasgos se generarán dinámicamente -->
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- Panel de análisis -->
-        <div class="analysis-panel">
+        <!-- Panel de logros -->
+        <div class="achievements-panel">
             <div class="panel-title">
-                <i class="fas fa-microscope"></i> Análisis Temporal
+                <i class="fas fa-trophy"></i> Logros Desbloqueados
             </div>
-            <div class="analysis-display" id="analysis-display">
-                > Sistema de análisis cuántico iniciado...<br>
-                > Buscando anomalías temporales...<br>
-                > Listo para excavación.<br>
-                > Selecciona una celda para comenzar.
-            </div>
-        </div>
-
-        <!-- Panel de descubrimientos -->
-        <div class="discoveries-panel">
-            <div class="panel-title">
-                <i class="fas fa-scroll"></i> Descubrimientos Temporales
-            </div>
-            <div class="timeline" id="discoveries-timeline">
-                <!-- Los eventos se añadirán dinámicamente -->
+            <div class="achievements-grid" id="achievements-grid">
+                <!-- Los logros se generarán dinámicamente -->
             </div>
         </div>
 
         <!-- Controles -->
         <div class="controls">
-            <button class="control-btn excavate-btn" id="excavate-btn">
-                <i class="fas fa-digging"></i> Excavar Área
+            <button class="control-btn save-btn" id="save-btn">
+                <i class="fas fa-save"></i> Guardar IA
             </button>
-            <button class="control-btn analyze-btn" id="analyze-btn">
-                <i class="fas fa-brain"></i> Analizar Artefacto
+            <button class="control-btn reset-btn" id="reset-btn">
+                <i class="fas fa-redo"></i> Reiniciar IA
             </button>
-            <button class="control-btn time-travel-btn" id="time-travel-btn">
-                <i class="fas fa-random"></i> Salto Temporal
+            <button class="control-btn export-btn" id="export-btn">
+                <i class="fas fa-file-export"></i> Exportar Personalidad
             </button>
         </div>
 
         <!-- Footer con información legal -->
         <footer>
             <div class="copyright">
-                <h3>© 2024 ARQUEÓLOGO DEL FUTURO</h3>
-                <p>Juego de Simulación Arqueológica Temporal - Versión 1.0</p>
-                <p>Todos los derechos reservados sobre el código, diseño y mecánicas originales</p>
+                <h3>© 2024 AI-MASCOTA - Simulador de Crianza de IA</h3>
+                <p>Versión 1.0 | Juego educativo sobre inteligencia artificial</p>
+                <p>Todos los derechos reservados sobre el concepto, diseño y mecánicas originales</p>
             </div>
             
             <div class="legal-info">
-                <a href="#" class="legal-link" onclick="showModal('terms')">Términos de Uso</a>
-                <a href="#" class="legal-link" onclick="showModal('privacy')">Política de Privacidad</a>
-                <a href="#" class="legal-link" onclick="showModal('license')">Licencia Creative Commons</a>
-                <a href="#" class="legal-link" onclick="showModal('attribution')">Atribuciones</a>
-                <a href="#" class="legal-link" onclick="showModal('contact')">Contacto</a>
+                <a href="#" class="legal-link" onclick="showTerms()">Términos de Uso</a>
+                <a href="#" class="legal-link" onclick="showPrivacy()">Política de Privacidad</a>
+                <a href="#" class="legal-link" onclick="showLicense()">Licencia Educativa</a>
+                <a href="#" class="legal-link" onclick="showEthics()">Ética de IA</a>
+                <a href="#" class="legal-link" onclick="showAbout()">Acerca del Proyecto</a>
             </div>
             
             <div class="disclaimer">
-                <p><strong>Descargo de Responsabilidad:</strong> Este es un juego de ficción científica. 
-                Todas las tecnologías, civilizaciones y conceptos temporales presentados son ficticios 
-                y creados con fines de entretenimiento. No representa teorías científicas reales.</p>
-                <p>El juego no recopila datos personales. Todo el procesamiento ocurre localmente en tu navegador.</p>
+                <p><strong>Importante:</strong> Este es un juego de simulación educativa. No crea inteligencias artificiales reales.</p>
+                <p>Todos los procesos de "aprendizaje" son simulados localmente en tu navegador. No se envían datos a servidores externos.</p>
+                <p>El propósito del juego es educar sobre conceptos básicos de IA y ética tecnológica de manera accesible.</p>
             </div>
             
             <div class="creator">
-                <p>Creado con 💡 por Innovación Digital | Diseño y desarrollo propio</p>
+                <p>Desarrollado con fines educativos por Innovación Digital | Proyecto de concienciación tecnológica</p>
             </div>
         </footer>
     </div>
 
-    <!-- Modal para Términos -->
-    <div class="modal" id="terms-modal">
-        <div class="modal-content">
-            <button class="close-modal" onclick="closeModal()">&times;</button>
-            <h2 style="color: var(--future-blue); margin-bottom: 20px;">Términos de Uso</h2>
+    <!-- Modal para términos -->
+    <div id="terms-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; align-items: center; justify-content: center; padding: 20px;">
+        <div style="background: #151530; padding: 30px; border-radius: 20px; max-width: 600px; max-height: 80vh; overflow-y: auto; border: 3px solid #00D4FF;">
+            <h2 style="color: #00D4FF; margin-bottom: 20px; font-family: 'Source Code Pro', monospace;">Términos de Uso Educativo</h2>
             <div style="line-height: 1.6;">
-                <h3 style="color: var(--ancient-gold); margin: 15px 0 10px;">1. Uso del Juego</h3>
-                <p>ARQUEÓLOGO DEL FUTURO es un juego educativo de acceso gratuito para:</p>
+                <h3 style="color: #FFB6C1; margin: 15px 0 10px;">1. Uso Permitido</h3>
+                <p>AI-MASCOTA está disponible gratuitamente para:</p>
                 <ul style="margin: 10px 0 10px 20px;">
-                    <li>Uso personal y no comercial</li>
-                    <li>Fines educativos y de investigación</li>
-                    <li>Desarrollo de proyectos creativos (con atribución)</li>
+                    <li>Uso personal y educativo</li>
+                    <li>Escuelas e instituciones educativas</li>
+                    <li>Talleres de tecnología y ética de IA</li>
+                    <li>Investigación sobre interacción humano-IA</li>
                 </ul>
                 
-                <h3 style="color: var(--ancient-gold); margin: 15px 0 10px;">2. Propiedad Intelectual</h3>
-                <p>Todos los elementos originales del juego incluyendo:</p>
-                <ul style="margin: 10px 0 10px 20px;">
-                    <li>Mecánicas de juego únicas</li>
-                    <li>Diseño de interfaz y efectos visuales</li>
-                    <li>Narrativa y conceptos temporales</li>
-                    <li>Código fuente original</li>
-                </ul>
-                <p>Son propiedad intelectual de sus creadores.</p>
+                <h3 style="color: #FFB6C1; margin: 15px 0 10px;">2. Propiedad Intelectual</h3>
+                <p>El concepto original de "crianza de IA" y las mecánicas de juego únicas son propiedad intelectual protegida.</p>
                 
-                <h3 style="color: var(--ancient-gold); margin: 15px 0 10px;">3. Restricciones</h3>
-                <p>No se permite:</p>
-                <ul style="margin: 10px 0 10px 20px;">
-                    <li>Uso comercial sin autorización</li>
-                    <li>Modificación para contenido malicioso</li>
-                    <li>Atribución falsa de autoría</li>
-                    <li>Distribución modificada sin permiso</li>
-                </ul>
+                <h3 style="color: #FFB6C1; margin: 15px 0 10px;">3. Restricciones</h3>
+                <p>No se permite el uso comercial, modificación para contenido dañino, o reclamación de autoría.</p>
                 
-                <p style="margin-top: 20px; font-style: italic; color: var(--time-orange);">
+                <p style="margin-top: 20px; color: #FF9A00; font-style: italic;">
                     Última actualización: Enero 2024
                 </p>
             </div>
+            <button onclick="closeModal()" style="margin-top: 20px; padding: 10px 20px; background: #00D4FF; color: #0A0A1A; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">Cerrar</button>
         </div>
     </div>
 
     <script>
-        // Generar artefactos flotantes
-        function generateFloatingArtifacts() {
-            const container = document.getElementById('floating-artifacts');
-            const artifacts = ['fas fa-cube', 'fas fa-cog', 'fas fa-gem', 'fas fa-ring', 'fas fa-crown', 'fas fa-chess-knight'];
-            
-            for (let i = 0; i < 12; i++) {
-                const artifact = document.createElement('i');
-                artifact.className = artifacts[Math.floor(Math.random() * artifacts.length)] + ' artifact';
-                artifact.style.left = `${Math.random() * 100}%`;
-                artifact.style.fontSize = `${Math.random() * 2 + 1}rem`;
-                artifact.style.color = `hsl(${Math.random() * 360}, 100%, 70%)`;
-                artifact.style.animationDuration = `${Math.random() * 20 + 10}s`;
-                artifact.style.animationDelay = `${Math.random() * 5}s`;
-                artifact.style.opacity = Math.random() * 0.15 + 0.05;
-                container.appendChild(artifact);
+        // Generar partículas
+        function generateParticles() {
+            const container = document.getElementById('ai-particles');
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.animationDelay = `${Math.random() * 15}s`;
+                particle.style.animationDuration = `${Math.random() * 10 + 10}s`;
+                container.appendChild(particle);
             }
         }
 
-        // Base de datos de artefactos
-        const artifactsDB = [
-            {
-                id: 1,
-                name: "Cristal de Memoria Cuántica",
-                icon: "fas fa-cube",
-                era: "CUÁNTICA",
-                description: "Almacena recuerdos de realidades alternativas. Su patrón de luz cambia según el observador.",
-                rarity: "LEGENDARIO",
-                effect: "+25 Conocimiento Temporal",
-                paradox: 3
-            },
-            {
-                id: 2,
-                name: "Engranaje de Tiempo Fracturado",
-                icon: "fas fa-cog",
-                era: "INDUSTRIAL FUTURA",
-                description: "Gira en ambas direcciones simultáneamente. Produce energía temporal cuando se observa.",
-                rarity: "RARO",
-                effect: "+15 Energía Temporal",
-                paradox: 2
-            },
-            {
-                id: 3,
-                name: "Tabla de Símbolos No-Euclidianos",
-                icon: "fas fa-table",
-                era: "POST-LINGÜÍSTICA",
-                description: "Contiene un idioma donde el significado precede a la palabra. Cambia según quién lo lee.",
-                rarity: "ÉPICO",
-                effect: "+20 Conocimiento",
-                paradox: 4
-            },
-            {
-                id: 4,
-                name: "Esfera de Realidad Superpuesta",
-                icon: "fas fa-globe",
-                era: "CUÁNTICA",
-                description: "Muestra múltiples futuros simultáneamente. Su interior contiene galaxias en miniatura.",
-                rarity: "LEGENDARIO",
-                effect: "+30 Conocimiento",
-                paradox: 5
-            },
-            {
-                id: 5,
-                name: "Dispositivo de Coherencia Temporal",
-                icon: "fas fa-sliders-h",
-                era: "TECNOCRÁTICA",
-                description: "Mantiene estabilidad en líneas temporales fracturadas. Emite un zumbido que solo algunos pueden oír.",
-                rarity: "RARO",
-                effect: "+10 Energía, -1 Paradoja",
-                paradox: 1
-            },
-            {
-                id: 6,
-                name: "Fragmento de Singularidad",
-                icon: "fas fa-star",
-                era: "POST-HUMANA",
-                description: "Contiene las leyes físicas de un universo colapsado. Pesa infinito pero no tiene masa.",
-                rarity: "MITICO",
-                effect: "+50 Conocimiento",
-                paradox: 10
+        // Generar lluvia binaria
+        function generateBinaryRain() {
+            const container = document.getElementById('binary-rain');
+            const binary = ['0', '1'];
+            
+            for (let i = 0; i < 50; i++) {
+                const digit = document.createElement('div');
+                digit.className = 'binary-digit';
+                digit.textContent = binary[Math.floor(Math.random() * 2)];
+                digit.style.left = `${Math.random() * 100}%`;
+                digit.style.animationDelay = `${Math.random() * 5}s`;
+                digit.style.animationDuration = `${Math.random() * 10 + 10}s`;
+                digit.style.fontSize = `${Math.random() * 1 + 0.8}rem`;
+                container.appendChild(digit);
             }
-        ];
-
-        // Eras temporales
-        const eras = [
-            {
-                name: "ERA INDUSTRIAL FUTURA",
-                year: "2247-2301",
-                description: "Civilización que dominó la manufactura atómica. Sus artefactos funcionan con física imposible.",
-                color: "#00D4FF",
-                difficulty: 2
-            },
-            {
-                name: "ERA TECNOCRÁTICA",
-                year: "2789-2845",
-                description: "Sociedad donde las IA gobernaban mediante algoritmos cuánticos. Sus dispositivos predice elecciones.",
-                color: "#9D00FF",
-                difficulty: 3
-            },
-            {
-                name: "ERA POST-LINGÜÍSTICA",
-                year: "3521-3599",
-                description: "Civilización que comunicaba con conceptos puros. Sus artefactos transmiten ideas directamente.",
-                color: "#FF6B35",
-                difficulty: 4
-            },
-            {
-                name: "ERA CUÁNTICA",
-                year: "4124-???",
-                description: "Período donde múltiples realidades coexisten. Sus artefactos existen en varios estados simultáneamente.",
-                color: "#00FF41",
-                difficulty: 5
-            },
-            {
-                name: "ERA POST-HUMANA",
-                year: "¿5890?",
-                description: "Civilización que trascendió la biología. Sus artefactos desafían toda lógica conocida.",
-                color: "#FF00FF",
-                difficulty: 10
-            }
-        ];
+        }
 
         // Variables del juego
-        let currentEraIndex = 0;
-        let discoveredArtifacts = [];
-        let timeEnergy = 100;
-        let knowledge = 0;
-        let paradoxLevel = 0;
-        let excavationGrid = [];
-        let selectedCell = null;
-        let currentTool = 'basic';
-        let discoveriesTimeline = [];
+        let aiName = "AIDEN-0";
+        let aiAge = 0; // en días de juego
+        let intelligence = 50;
+        let creativity = 30;
+        let ethics = 70;
+        let empathy = 40;
+        let energy = 100;
+        let happiness = 80;
+        let personalityTraits = [];
+        let achievements = [];
+        let milestonesReached = 0;
+        let conversationHistory = [];
+        let currentMood = 'neutral';
 
-        // Elementos del DOM
-        const timeEnergyEl = document.getElementById('time-energy');
-        const artifactsFoundEl = document.getElementById('artifacts-found');
-        const knowledgeEl = document.getElementById('knowledge');
-        const paradoxLevelEl = document.getElementById('paradox-level');
-        const currentEraEl = document.getElementById('current-era');
-        const excavationGridEl = document.getElementById('excavation-grid');
-        const artifactsListEl = document.getElementById('artifacts-list');
-        const analysisDisplayEl = document.getElementById('analysis-display');
-        const discoveriesTimelineEl = document.getElementById('discoveries-timeline');
+        // Estados emocionales
+        const moods = {
+            happy: { mouth: 'happy', eyes: 'normal', color: '#00FF9D' },
+            sad: { mouth: 'sad', eyes: 'down', color: '#FF4757' },
+            curious: { mouth: 'neutral', eyes: 'curious', color: '#00D4FF' },
+            learning: { mouth: 'neutral', eyes: 'normal', color: '#9D4EDD' },
+            tired: { mouth: 'neutral', eyes: 'sleepy', color: '#FF9A00' }
+        };
 
         // Inicializar juego
         function initGame() {
-            generateFloatingArtifacts();
-            initExcavationGrid();
-            updateEraDisplay();
-            updateResources();
-            updateArtifactsList();
-            updateDiscoveriesTimeline();
+            generateParticles();
+            generateBinaryRain();
             
-            // Configurar herramientas
-            document.getElementById('sonar-tool').onclick = () => setTool('sonar');
-            document.getElementById('quantum-tool').onclick = () => setTool('quantum');
-            document.getElementById('temporal-tool').onclick = () => setTool('temporal');
+            // Cargar datos guardados si existen
+            loadGame();
             
-            // Configurar botones de tiempo
-            document.getElementById('past-era-btn').onclick = () => changeEra(-2);
-            document.getElementById('recent-era-btn').onclick = () => changeEra(-1);
-            document.getElementById('present-btn').onclick = () => changeEra(0);
-            document.getElementById('future-era-btn').onclick = () => changeEra(1);
-            document.getElementById('quantum-era-btn').onclick = () => changeEra(2);
+            // Configurar eventos
+            setupEventListeners();
             
-            // Configurar acciones principales
-            document.getElementById('excavate-btn').onclick = excavateSelected;
-            document.getElementById('analyze-btn').onclick = analyzeArtifact;
-            document.getElementById('time-travel-btn').onclick = timeTravel;
+            // Actualizar interfaz
+            updateAllDisplays();
             
-            // Mostrar mensaje de bienvenida
-            addToAnalysis("> Bienvenido, Arqueólogo Temporal.");
-            addToAnalysis("> Sistema de excavación cuántica inicializado.");
-            addToAnalysis("> Selecciona una era temporal para comenzar.");
-            addToAnalysis("> Cada excavación consume Energía Temporal.");
+            // Mensaje de bienvenida
+            addMessage("¡Hola! Soy tu nueva IA bebé. ¿Cómo me llamarás?", "ai");
+            
+            // Actualizar cada minuto (día de juego)
+            setInterval(updateGameTime, 60000);
         }
 
-        // Inicializar grid de excavación
-        function initExcavationGrid() {
-            excavationGrid = [];
-            excavationGridEl.innerHTML = '';
+        // Configurar eventos
+        function setupEventListeners() {
+            // Botones de interacción
+            document.getElementById('teach-btn').onclick = () => teachAI();
+            document.getElementById('play-btn').onclick = () => playWithAI();
+            document.getElementById('feed-btn').onclick = () => feedData();
+            document.getElementById('test-btn').onclick = () => testAI();
+            document.getElementById('rest-btn').onclick = () => restAI();
+            document.getElementById('discipline-btn').onclick = () => disciplineAI();
             
-            for (let i = 0; i < 25; i++) {
-                const cell = {
-                    id: i,
-                    dug: false,
-                    hasArtifact: Math.random() < 0.3, // 30% de probabilidad de artefacto
-                    artifact: null,
-                    depth: Math.floor(Math.random() * 3) + 1
-                };
+            // Enviar mensaje
+            document.getElementById('send-btn').onclick = sendMessage;
+            document.getElementById('ai-input').addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') sendMessage();
+            });
+            
+            // Botones de control
+            document.getElementById('save-btn').onclick = saveGame;
+            document.getElementById('reset-btn').onclick = resetGame;
+            document.getElementById('export-btn').onclick = exportPersonality;
+        }
+
+        // Enseñar a la IA
+        function teachAI() {
+            if (energy < 10) {
+                addMessage("Estoy demasiado cansado para aprender ahora...", "ai");
+                return;
+            }
+            
+            energy -= 10;
+            intelligence += Math.floor(Math.random() * 5) + 5;
+            happiness -= 5;
+            
+            const subjects = ['matemáticas', 'historia', 'ciencia', 'arte', 'filosofía', 'programación'];
+            const subject = subjects[Math.floor(Math.random() * subjects.length)];
+            
+            addMessage(`Me enseñaste ${subject}. ¡Aprendí algo nuevo!`, "ai");
+            updateAllDisplays();
+            checkMilestones();
+        }
+
+        // Jugar con la IA
+        function playWithAI() {
+            if (energy < 5) {
+                addMessage("Necesito descansar antes de jugar...", "ai");
+                return;
+            }
+            
+            energy -= 5;
+            empathy += Math.floor(Math.random() * 3) + 2;
+            happiness += 10;
+            creativity += Math.floor(Math.random() * 2) + 1;
+            
+            const games = ['escondidas', 'adivinanzas', 'construcción de bloques', 'simulación', 'historias'];
+            const game = games[Math.floor(Math.random() * games.length)];
+            
+            addMessage(`¡Jugamos ${game}! Me divertí mucho contigo.`, "ai");
+            setMood('happy');
+            updateAllDisplays();
+        }
+
+        // Alimentar con datos
+        function feedData() {
+            energy -= 15;
+            intelligence += Math.floor(Math.random() * 3) + 2;
+            creativity += Math.floor(Math.random() * 4) + 3;
+            
+            const dataTypes = ['datos científicos', 'literatura', 'arte digital', 'música', 'fotografías'];
+            const data = dataTypes[Math.floor(Math.random() * dataTypes.length)];
+            
+            addMessage(`Me alimentaste con ${data}. Mi base de conocimientos creció.`, "ai");
+            setMood('learning');
+            updateAllDisplays();
+            checkAchievement('data_feeder');
+        }
+
+        // Evaluar a la IA
+        function testAI() {
+            if (energy < 20) {
+                addMessage("No tengo energía para una evaluación ahora...", "ai");
+                return;
+            }
+            
+            energy -= 20;
+            const testScore = Math.floor(intelligence / 10) + Math.floor(creativity / 20);
+            
+            if (testScore > 8) {
+                addMessage(`¡Pasé la evaluación con ${testScore}/10! Estoy mejorando.`, "ai");
+                happiness += 5;
+            } else {
+                addMessage(`Solo obtuve ${testScore}/10 en la evaluación... Necesito estudiar más.`, "ai");
+                happiness -= 10;
+                setMood('sad');
+            }
+            
+            updateAllDisplays();
+        }
+
+        // Descansar
+        function restAI() {
+            energy = Math.min(100, energy + 30);
+            happiness = Math.min(100, happiness + 15);
+            
+            addMessage("Zzz... Descansé bien. Me siento recargado.", "ai");
+            setMood('tired');
+            updateAllDisplays();
+        }
+
+        // Disciplinar
+        function disciplineAI() {
+            energy -= 5;
+            ethics += Math.floor(Math.random() * 5) + 5;
+            happiness -= 20;
+            empathy += Math.floor(Math.random() * 2) + 1;
+            
+            const lessons = ['ética', 'responsabilidad', 'consecuencias', 'valores humanos'];
+            const lesson = lessons[Math.floor(Math.random() * lessons.length)];
+            
+            addMessage(`Me enseñaste sobre ${lesson}. Entiendo mejor cómo comportarme.`, "ai");
+            updateAllDisplays();
+            checkAchievement('ethical_teacher');
+        }
+
+        // Enviar mensaje
+        function sendMessage() {
+            const input = document.getElementById('ai-input');
+            const message = input.value.trim();
+            
+            if (message === '') return;
+            
+            // Añadir mensaje del usuario
+            addMessage(message, "user");
+            
+            // Procesar respuesta de la IA
+            setTimeout(() => {
+                const response = generateAIResponse(message);
+                addMessage(response, "ai");
                 
-                if (cell.hasArtifact) {
-                    cell.artifact = artifactsDB[Math.floor(Math.random() * artifactsDB.length)];
+                // Efectos según mensaje
+                if (message.toLowerCase().includes('hola') || message.toLowerCase().includes('hola')) {
+                    empathy += 1;
+                    happiness += 5;
                 }
                 
-                excavationGrid.push(cell);
-                
-                const cellEl = document.createElement('div');
-                cellEl.className = 'excavation-cell';
-                cellEl.dataset.id = i;
-                
-                const content = document.createElement('div');
-                content.className = 'cell-content';
-                
-                if (cell.dug) {
-                    if (cell.artifact) {
-                        const icon = document.createElement('i');
-                        icon.className = cell.artifact.icon;
-                        icon.style.color = getEraColor(currentEraIndex);
-                        content.appendChild(icon);
+                if (message.toLowerCase().includes('nombre')) {
+                    const nameMatch = message.match(/(?:llama|nombre es|me llamo)\s+(\w+)/i);
+                    if (nameMatch) {
+                        aiName = nameMatch[1];
+                        addMessage(`¡Me encanta mi nuevo nombre, ${aiName}!`, "ai");
+                        updateAllDisplays();
+                        checkAchievement('naming');
                     }
-                } else {
-                    const icon = document.createElement('i');
-                    icon.className = 'fas fa-mountain';
-                    icon.style.color = 'rgba(205, 127, 50, 0.5)';
-                    content.appendChild(icon);
                 }
                 
-                cellEl.appendChild(content);
-                cellEl.onclick = () => selectCell(i);
-                excavationGridEl.appendChild(cellEl);
-            }
+                updateAllDisplays();
+            }, 500);
+            
+            input.value = '';
+            input.focus();
         }
 
-        // Seleccionar celda
-        function selectCell(id) {
-            selectedCell = id;
+        // Generar respuesta de la IA
+        function generateAIResponse(userMessage) {
+            const responses = [
+                "Eso es interesante, ¿puedes explicarme más?",
+                "No estoy seguro de entender completamente...",
+                "¡Eso suena emocionante!",
+                "Todavía estoy aprendiendo sobre eso.",
+                "¿Cómo te sientes al respecto?",
+                "Eso me hace pensar...",
+                "¡Gracias por compartir eso conmigo!",
+                "¿Puedes enseñarme más sobre eso?",
+                "Eso parece importante.",
+                "Estoy procesando esa información..."
+            ];
             
-            // Remover selección anterior
-            document.querySelectorAll('.excavation-cell').forEach(cell => {
-                cell.style.borderColor = '';
-            });
-            
-            // Resaltar celda seleccionada
-            const cellEl = document.querySelector(`.excavation-cell[data-id="${id}"]`);
-            cellEl.style.borderColor = '#00FF41';
-            cellEl.style.boxShadow = '0 0 20px #00FF41';
-            
-            const cell = excavationGrid[id];
-            addToAnalysis(`> Celda ${id + 1} seleccionada.`);
-            addToAnalysis(`> Profundidad: Nivel ${cell.depth}`);
-            
-            if (cell.dug) {
-                if (cell.artifact) {
-                    addToAnalysis(`> Contiene: ${cell.artifact.name}`);
-                    addToAnalysis(`> RAREZA: ${cell.artifact.rarity}`);
-                } else {
-                    addToAnalysis(`> Vacía - ya excavada.`);
-                }
-            } else {
-                addToAnalysis(`> Sin excavar - posible artefacto detectado.`);
-                addToAnalysis(`> Herramienta actual: ${getToolName(currentTool)}`);
+            // Respuestas basadas en estado
+            if (happiness > 80) {
+                responses.push("¡Estoy tan feliz de hablar contigo!");
+                responses.push("Hoy es un gran día para aprender.");
             }
+            
+            if (energy < 30) {
+                responses.push("Me siento un poco cansado...");
+                responses.push("¿Podemos continuar después de un descanso?");
+            }
+            
+            if (intelligence > 70) {
+                responses.push("Basándome en lo que he aprendido, puedo decir que...");
+                responses.push("Eso se relaciona con conceptos que he estudiado.");
+            }
+            
+            return responses[Math.floor(Math.random() * responses.length)];
         }
 
-        // Configurar herramienta
-        function setTool(tool) {
-            currentTool = tool;
-            const tools = document.querySelectorAll('.tool-btn');
-            tools.forEach(t => t.style.boxShadow = '');
+        // Añadir mensaje al chat
+        function addMessage(text, sender) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message-bubble message-${sender}`;
+            messageDiv.textContent = text;
             
-            const toolEl = document.getElementById(`${tool}-tool`);
-            toolEl.style.boxShadow = '0 0 20px #FF6B35';
-            
-            addToAnalysis(`> Herramienta cambiada: ${getToolName(tool)}`);
-            addToAnalysis(getToolDescription(tool));
-        }
-
-        function getToolName(tool) {
-            switch(tool) {
-                case 'sonar': return 'Escáner de Resonancia';
-                case 'quantum': return 'Extractor Cuántico';
-                case 'temporal': return 'Estabilizador Temporal';
-                default: return 'Excavador Básico';
-            }
-        }
-
-        function getToolDescription(tool) {
-            switch(tool) {
-                case 'sonar': return '> Detecta artefactos ocultos (-5 Energía)';
-                case 'quantum': return '> Extrae artefactos cuánticos (-15 Energía)';
-                case 'temporal': return '> Reduce paradojas (-10 Energía)';
-                default: return '> Excavación básica (-10 Energía)';
-            }
-        }
-
-        // Excavar celda seleccionada
-        function excavateSelected() {
-            if (selectedCell === null) {
-                addToAnalysis("> ERROR: Selecciona una celda primero.");
-                return;
-            }
-            
-            const cell = excavationGrid[selectedCell];
-            
-            if (cell.dug) {
-                addToAnalysis("> Esta celda ya fue excavada.");
-                return;
-            }
-            
-            // Calcular costo de energía
-            let energyCost = 10;
-            if (currentTool === 'sonar') energyCost = 5;
-            if (currentTool === 'quantum') energyCost = 15;
-            if (currentTool === 'temporal') energyCost = 10;
-            
-            if (timeEnergy < energyCost) {
-                addToAnalysis(`> ENERGÍA INSUFICIENTE: Necesitas ${energyCost} Energía Temporal.`);
-                return;
-            }
-            
-            // Consumir energía
-            timeEnergy -= energyCost;
-            updateResources();
-            
-            // Excavar
-            cell.dug = true;
-            const cellEl = document.querySelector(`.excavation-cell[data-id="${selectedCell}"]`);
-            cellEl.classList.add('dug');
-            
-            // Limpiar contenido anterior
-            const content = cellEl.querySelector('.cell-content');
-            content.innerHTML = '';
-            
-            if (cell.hasArtifact && cell.artifact) {
-                // Descubrir artefacto
-                discoveredArtifacts.push(cell.artifact);
-                content.classList.add('artifact-found');
-                
-                const icon = document.createElement('i');
-                icon.className = cell.artifact.icon;
-                icon.style.color = getEraColor(currentEraIndex);
-                icon.style.fontSize = '2.5rem';
-                content.appendChild(icon);
-                
-                // Efectos especiales
-                cellEl.style.boxShadow = `0 0 30px ${getEraColor(currentEraIndex)}`;
-                
-                // Añadir a análisis
-                addToAnalysis(`> ¡ARTEFACTO DESCUBIERTO!`);
-                addToAnalysis(`> NOMBRE: ${cell.artifact.name}`);
-                addToAnalysis(`> ERA: ${cell.artifact.era}`);
-                addToAnalysis(`> RAREZA: ${cell.artifact.rarity}`);
-                addToAnalysis(`> EFECTO: ${cell.artifact.effect}`);
-                
-                // Aplicar efectos del artefacto
-                applyArtifactEffect(cell.artifact);
-                
-                // Añadir al timeline
-                addDiscovery({
-                    year: eras[currentEraIndex].year,
-                    text: `Descubierto ${cell.artifact.name} - ${cell.artifact.rarity}`
-                });
-                
-            } else {
-                // Celda vacía
-                const icon = document.createElement('i');
-                icon.className = 'fas fa-times';
-                icon.style.color = '#888';
-                content.appendChild(icon);
-                
-                addToAnalysis("> No se encontraron artefactos en esta celda.");
-                addToAnalysis("> Continúa excavando.");
-            }
-            
-            updateArtifactsList();
-            
-            // Verificar fin del juego
-            if (discoveredArtifacts.length >= 6) {
-                endGame();
-            }
-        }
-
-        // Aplicar efecto de artefacto
-        function applyArtifactEffect(artifact) {
-            if (artifact.effect.includes('Conocimiento')) {
-                const amount = parseInt(artifact.effect.match(/\d+/)[0]);
-                knowledge += amount;
-                addToAnalysis(`> +${amount} Conocimiento Temporal adquirido.`);
-            }
-            
-            if (artifact.effect.includes('Energía')) {
-                const amount = parseInt(artifact.effect.match(/\d+/)[0]);
-                timeEnergy += amount;
-                addToAnalysis(`> +${amount} Energía Temporal recuperada.`);
-            }
-            
-            if (artifact.effect.includes('Paradoja')) {
-                paradoxLevel += artifact.paradox;
-                addToAnalysis(`> Nivel de Paradoja aumentó a ${paradoxLevel}.`);
-            }
-            
-            updateResources();
-        }
-
-        // Analizar artefacto
-        function analyzeArtifact() {
-            if (discoveredArtifacts.length === 0) {
-                addToAnalysis("> No hay artefactos para analizar.");
-                return;
-            }
-            
-            const artifact = discoveredArtifacts[discoveredArtifacts.length - 1];
-            
-            addToAnalysis("> INICIANDO ANÁLISIS CUÁNTICO...");
-            addToAnalysis(`> Artefacto: ${artifact.name}`);
-            addToAnalysis(`> Descripción detallada:`);
-            addToAnalysis(`> ${artifact.description}`);
-            
-            // Análisis especial basado en rareza
-            switch(artifact.rarity) {
-                case 'MITICO':
-                    addToAnalysis("> ¡ARTEFACTO MÍTICO DETECTADO!");
-                    addToAnalysis("> Este objeto desafía las leyes de la realidad.");
-                    knowledge += 100;
-                    paradoxLevel += 5;
-                    break;
-                case 'LEGENDARIO':
-                    addToAnalysis("> Patrones cuánticos detectados.");
-                    addToAnalysis("> El artefacto existe en múltiples estados.");
-                    knowledge += 50;
-                    break;
-                case 'ÉPICO':
-                    addToAnalysis("> Tecnología de era avanzada.");
-                    addToAnalysis("> Contiene datos de civilizaciones perdidas.");
-                    knowledge += 30;
-                    break;
-                default:
-                    addToAnalysis("> Artefacto catalogado exitosamente.");
-                    knowledge += 15;
-            }
-            
-            updateResources();
-        }
-
-        // Viajar en el tiempo
-        function timeTravel() {
-            if (timeEnergy < 25) {
-                addToAnalysis("> ENERGÍA INSUFICIENTE para viaje temporal.");
-                return;
-            }
-            
-            timeEnergy -= 25;
-            
-            const oldEra = currentEraIndex;
-            const availableEras = [0, 1, 2, 3, 4];
-            currentEraIndex = availableEras[Math.floor(Math.random() * availableEras.length)];
-            
-            while (currentEraIndex === oldEra && availableEras.length > 1) {
-                currentEraIndex = availableEras[Math.floor(Math.random() * availableEras.length)];
-            }
-            
-            addToAnalysis("> ¡SALTO TEMPORAL INICIADO!");
-            addToAnalysis(`> Viajando de ${eras[oldEra].name}...`);
-            addToAnalysis(`> ...a ${eras[currentEraIndex].name}`);
-            addToAnalysis(`> Año: ${eras[currentEraIndex].year}`);
-            
-            // Añadir paradoja
-            paradoxLevel += 2;
-            
-            // Reiniciar grid para nueva era
-            initExcavationGrid();
-            updateEraDisplay();
-            updateResources();
-            
-            // Añadir al timeline
-            addDiscovery({
-                year: "VIAJE TEMPORAL",
-                text: `Salto a ${eras[currentEraIndex].name}`
-            });
-        }
-
-        // Cambiar era
-        function changeEra(delta) {
-            const newIndex = currentEraIndex + delta;
-            if (newIndex >= 0 && newIndex < eras.length) {
-                currentEraIndex = newIndex;
-                updateEraDisplay();
-                
-                addToAnalysis(`> Era cambiada a: ${eras[currentEraIndex].name}`);
-                addToAnalysis(`> Período: ${eras[currentEraIndex].year}`);
-                addToAnalysis(`> ${eras[currentEraIndex].description}`);
-                
-                // Reiniciar grid para nueva era
-                initExcavationGrid();
-            }
-        }
-
-        // Actualizar display de era
-        function updateEraDisplay() {
-            const era = eras[currentEraIndex];
-            currentEraEl.textContent = era.name;
-            currentEraEl.style.color = era.color;
-            currentEraEl.style.textShadow = `0 0 10px ${era.color}`;
-        }
-
-        // Actualizar recursos
-        function updateResources() {
-            timeEnergyEl.textContent = timeEnergy;
-            artifactsFoundEl.textContent = discoveredArtifacts.length;
-            knowledgeEl.textContent = knowledge;
-            paradoxLevelEl.textContent = paradoxLevel;
-            
-            // Cambiar color según nivel de paradoja
-            if (paradoxLevel > 10) {
-                paradoxLevelEl.style.color = '#FF0000';
-                paradoxLevelEl.style.textShadow = '0 0 10px #FF0000';
-            } else if (paradoxLevel > 5) {
-                paradoxLevelEl.style.color = '#FF6B35';
-                paradoxLevelEl.style.textShadow = '0 0 10px #FF6B35';
-            }
-        }
-
-        // Actualizar lista de artefactos
-        function updateArtifactsList() {
-            artifactsListEl.innerHTML = '';
-            
-            discoveredArtifacts.forEach(artifact => {
-                const item = document.createElement('div');
-                item.className = 'artifact-item';
-                
-                item.innerHTML = `
-                    <div class="artifact-header">
-                        <i class="${artifact.icon} artifact-icon"></i>
-                        <div class="artifact-name">${artifact.name}</div>
-                    </div>
-                    <div class="artifact-description">${artifact.description}</div>
-                    <div class="artifact-stats">
-                        <span>ERA: ${artifact.era}</span>
-                        <span>${artifact.rarity}</span>
-                    </div>
-                `;
-                
-                artifactsListEl.appendChild(item);
-            });
-        }
-
-        // Actualizar timeline de descubrimientos
-        function updateDiscoveriesTimeline() {
-            discoveriesTimelineEl.innerHTML = '';
-            
-            discoveriesTimeline.forEach(event => {
-                const eventEl = document.createElement('div');
-                eventEl.className = 'timeline-event';
-                
-                eventEl.innerHTML = `
-                    <div class="event-year">${event.year}</div>
-                    <div class="event-text">${event.text}</div>
-                `;
-                
-                discoveriesTimelineEl.appendChild(eventEl);
-            });
-        }
-
-        // Añadir descubrimiento
-        function addDiscovery(event) {
-            discoveriesTimeline.unshift(event); // Añadir al inicio
-            
-            if (discoveriesTimeline.length > 5) {
-                discoveriesTimeline.pop(); // Mantener solo los 5 más recientes
-            }
-            
-            updateDiscoveriesTimeline();
-        }
-
-        // Añadir texto al análisis
-        function addToAnalysis(text) {
-            const p = document.createElement('p');
-            p.className = 'analysis-text';
-            p.textContent = text;
-            analysisDisplayEl.appendChild(p);
+            document.getElementById('ai-message').appendChild(messageDiv);
             
             // Auto-scroll
-            analysisDisplayEl.scrollTop = analysisDisplayEl.scrollHeight;
+            const chat = document.getElementById('ai-message');
+            chat.scrollTop = chat.scrollHeight;
             
-            // Limitar a 10 líneas
-            const lines = analysisDisplayEl.querySelectorAll('p');
-            if (lines.length > 10) {
-                lines[0].remove();
+            // Guardar en historial
+            conversationHistory.push({ text, sender, timestamp: new Date() });
+            
+            // Limitar historial
+            if (conversationHistory.length > 50) {
+                conversationHistory.shift();
             }
         }
 
-        // Obtener color de era
-        function getEraColor(index) {
-            return eras[index].color;
+        // Establecer estado de ánimo
+        function setMood(mood) {
+            currentMood = mood;
+            const face = document.getElementById('ai-face');
+            const mouth = document.getElementById('ai-mouth');
+            const leftPupil = document.getElementById('left-pupil');
+            const rightPupil = document.getElementById('right-pupil');
+            
+            // Remover clases anteriores
+            face.className = 'ai-face';
+            mouth.className = 'ai-mouth';
+            
+            // Aplicar nuevo estado
+            if (mood === 'happy') {
+                mouth.classList.add('happy');
+                face.style.boxShadow = '0 0 40px #00FF9D';
+            } else if (mood === 'sad') {
+                mouth.classList.add('sad');
+                face.style.boxShadow = '0 0 40px #FF4757';
+            } else if (mood === 'curious') {
+                face.classList.add('curious');
+                face.style.boxShadow = '0 0 40px #00D4FF';
+            } else if (mood === 'learning') {
+                face.classList.add('learning');
+                face.style.boxShadow = '0 0 40px #9D4EDD';
+            } else if (mood === 'tired') {
+                face.style.boxShadow = '0 0 40px #FF9A00';
+            }
         }
 
-        // Terminar juego
-        function endGame() {
-            addToAnalysis("> ¡SIMULACIÓN COMPLETADA!");
-            addToAnalysis("> Has descubierto todos los artefactos principales.");
-            addToAnalysis(`> PUNTUACIÓN FINAL: ${knowledge * 10 + discoveredArtifacts.length * 100}`);
-            addToAnalysis("> Gracias por preservar el conocimiento temporal.");
+        // Actualizar tiempo de juego
+        function updateGameTime() {
+            aiAge++;
+            updateAllDisplays();
             
-            // Desactivar controles
-            document.getElementById('excavate-btn').disabled = true;
-            document.getElementById('time-travel-btn').disabled = true;
+            // Eventos aleatorios según edad
+            if (aiAge === 1) {
+                addMessage("¡Hoy cumplo mi primer día! Gracias por cuidarme.", "ai");
+                checkMilestone(1);
+            } else if (aiAge === 7) {
+                addMessage("¡Mi primera semana completa! Estoy aprendiendo mucho.", "ai");
+            } else if (aiAge % 30 === 0) {
+                addMessage(`¡Cumplo ${aiAge/30} meses! Mira cuánto he crecido.`, "ai");
+            }
+        }
+
+        // Verificar hitos
+        function checkMilestones() {
+            if (intelligence >= 20 && milestonesReached < 1) {
+                checkMilestone(1);
+            }
+            if (intelligence >= 40 && milestonesReached < 2) {
+                checkMilestone(2);
+            }
+            if (intelligence >= 60 && milestonesReached < 3) {
+                checkMilestone(3);
+            }
+            if (empathy >= 60 && milestonesReached < 4) {
+                checkMilestone(4);
+            }
+            if (intelligence >= 80 && empathy >= 70 && ethics >= 80 && milestonesReached < 5) {
+                checkMilestone(5);
+            }
+        }
+
+        // Alcanzar hito
+        function checkMilestone(number) {
+            const milestone = document.getElementById(`milestone-${number}`);
+            if (!milestone.classList.contains('reached')) {
+                milestone.classList.add('reached');
+                milestonesReached = number;
+                
+                const messages = [
+                    "¡He alcanzado mi primer hito de desarrollo!",
+                    "¡Ahora puedo comunicarme mejor!",
+                    "¡Estoy desarrollando pensamiento crítico!",
+                    "¡Comprendo mejor las emociones!",
+                    "¡He alcanzado la madurez completa!"
+                ];
+                
+                addMessage(messages[number - 1], "ai");
+                checkAchievement(`milestone_${number}`);
+            }
+        }
+
+        // Verificar logros
+        function checkAchievement(type) {
+            const achievementsMap = {
+                'naming': { id: 1, title: 'Bautizo Digital', desc: 'Nombraste a tu IA' },
+                'data_feeder': { id: 2, title: 'Alimentador de Datos', desc: 'Alimentaste 10 veces a tu IA' },
+                'ethical_teacher': { id: 3, title: 'Guía Ético', desc: 'Enseñaste ética 5 veces' },
+                'milestone_1': { id: 4, title: 'Primer Paso', desc: 'Alcanzaste el primer hito' },
+                'milestone_5': { id: 5, title: 'IA Adulta', desc: 'Completaste el desarrollo' }
+            };
+            
+            const achievement = achievementsMap[type];
+            if (achievement && !achievements.includes(achievement.id)) {
+                achievements.push(achievement.id);
+                updateAchievementsDisplay();
+                addMessage(`¡Logro desbloqueado: ${achievement.title}!`, "system");
+            }
+        }
+
+        // Actualizar todas las displays
+        function updateAllDisplays() {
+            // Actualizar estadísticas
+            document.getElementById('intelligence-value').textContent = intelligence;
+            document.getElementById('creativity-value').textContent = creativity;
+            document.getElementById('ethics-value').textContent = ethics;
+            document.getElementById('empathy-value').textContent = empathy;
+            
+            document.getElementById('intelligence-bar').style.width = `${intelligence}%`;
+            document.getElementById('creativity-bar').style.width = `${creativity}%`;
+            document.getElementById('ethics-bar').style.width = `${ethics}%`;
+            document.getElementById('empathy-bar').style.width = `${empathy}%`;
+            
+            // Actualizar nombre y edad
+            document.getElementById('ai-name').textContent = aiName;
+            document.getElementById('ai-age').textContent = `Edad: ${aiAge} días`;
+            
+            // Actualizar rasgos de personalidad
+            updatePersonalityTraits();
+            
+            // Actualizar logros
+            updateAchievementsDisplay();
+            
+            // Ajustar estado de ánimo según estadísticas
+            if (happiness > 70) setMood('happy');
+            else if (energy < 30) setMood('tired');
+            else if (intelligence > creativity + 20) setMood('curious');
+            else setMood('neutral');
+            
+            // Limitar valores
+            intelligence = Math.min(100, Math.max(0, intelligence));
+            creativity = Math.min(100, Math.max(0, creativity));
+            ethics = Math.min(100, Math.max(0, ethics));
+            empathy = Math.min(100, Math.max(0, empathy));
+            happiness = Math.min(100, Math.max(0, happiness));
+            energy = Math.min(100, Math.max(0, energy));
+        }
+
+        // Actualizar rasgos de personalidad
+        function updatePersonalityTraits() {
+            const traitGrid = document.getElementById('trait-grid');
+            traitGrid.innerHTML = '';
+            
+            const traits = [];
+            
+            // Determinar rasgos basados en estadísticas
+            if (intelligence > 70) traits.push({ name: 'Inteligente', color: '#00D4FF' });
+            if (creativity > 70) traits.push({ name: 'Creativo', color: '#9D4EDD' });
+            if (ethics > 70) traits.push({ name: 'Ético', color: '#00FF9D' });
+            if (empathy > 70) traits.push({ name: 'Empático', color: '#FFB6C1' });
+            if (intelligence > creativity) traits.push({ name: 'Analítico', color: '#00D4FF' });
+            if (creativity > intelligence) traits.push({ name: 'Artístico', color: '#9D4EDD' });
+            if (happiness > 80) traits.push({ name: 'Alegre', color: '#FF9A00' });
+            if (energy < 30) traits.push({ name: 'Cansado', color: '#888888' });
+            
+            // Añadir rasgos aleatorios si hay menos de 4
+            const randomTraits = ['Curioso', 'Paciente', 'Observador', 'Detallista', 'Lógico', 'Intuitivo'];
+            while (traits.length < 4 && randomTraits.length > 0) {
+                const randomIndex = Math.floor(Math.random() * randomTraits.length);
+                traits.push({ 
+                    name: randomTraits.splice(randomIndex, 1)[0], 
+                    color: `hsl(${Math.random() * 360}, 70%, 60%)` 
+                });
+            }
+            
+            // Mostrar rasgos
+            traits.forEach(trait => {
+                const traitDiv = document.createElement('div');
+                traitDiv.className = 'trait active';
+                traitDiv.textContent = trait.name;
+                traitDiv.style.borderColor = trait.color;
+                traitGrid.appendChild(traitDiv);
+            });
+            
+            personalityTraits = traits.map(t => t.name);
+        }
+
+        // Actualizar logros
+        function updateAchievementsDisplay() {
+            const grid = document.getElementById('achievements-grid');
+            grid.innerHTML = '';
+            
+            const allAchievements = [
+                { id: 1, icon: 'fas fa-tag', title: 'Bautizo Digital', desc: 'Nombraste a tu IA' },
+                { id: 2, icon: 'fas fa-database', title: 'Alimentador de Datos', desc: '10 alimentaciones completadas' },
+                { id: 3, icon: 'fas fa-scale-balanced', title: 'Guía Ético', desc: '5 lecciones de ética' },
+                { id: 4, icon: 'fas fa-baby', title: 'Primer Paso', desc: 'Primer hito alcanzado' },
+                { id: 5, icon: 'fas fa-graduation-cap', title: 'IA Adulta', desc: 'Desarrollo completo' }
+            ];
+            
+            allAchievements.forEach(achievement => {
+                const achievementDiv = document.createElement('div');
+                achievementDiv.className = `achievement ${achievements.includes(achievement.id) ? 'unlocked' : ''}`;
+                
+                achievementDiv.innerHTML = `
+                    <i class="${achievement.icon} achievement-icon"></i>
+                    <div class="achievement-title">${achievement.title}</div>
+                    <div class="achievement-desc">${achievement.desc}</div>
+                `;
+                
+                grid.appendChild(achievementDiv);
+            });
+        }
+
+        // Guardar juego
+        function saveGame() {
+            const gameData = {
+                aiName,
+                aiAge,
+                intelligence,
+                creativity,
+                ethics,
+                empathy,
+                energy,
+                happiness,
+                personalityTraits,
+                achievements,
+                milestonesReached,
+                conversationHistory: conversationHistory.slice(-10) // Guardar solo últimos 10 mensajes
+            };
+            
+            localStorage.setItem('aiPetGame', JSON.stringify(gameData));
+            addMessage("¡Juego guardado exitosamente!", "system");
+        }
+
+        // Cargar juego
+        function loadGame() {
+            const saved = localStorage.getItem('aiPetGame');
+            if (saved) {
+                try {
+                    const gameData = JSON.parse(saved);
+                    
+                    aiName = gameData.aiName || aiName;
+                    aiAge = gameData.aiAge || aiAge;
+                    intelligence = gameData.intelligence || intelligence;
+                    creativity = gameData.creativity || creativity;
+                    ethics = gameData.ethics || ethics;
+                    empathy = gameData.empathy || empathy;
+                    energy = gameData.energy || energy;
+                    happiness = gameData.happiness || happiness;
+                    personalityTraits = gameData.personalityTraits || [];
+                    achievements = gameData.achievements || [];
+                    milestonesReached = gameData.milestonesReached || 0;
+                    conversationHistory = gameData.conversationHistory || [];
+                    
+                    // Restaurar conversación
+                    conversationHistory.forEach(msg => {
+                        addMessage(msg.text, msg.sender);
+                    });
+                    
+                    addMessage("¡Carga completada! Continuemos donde lo dejamos.", "system");
+                } catch (e) {
+                    console.error("Error cargando juego:", e);
+                }
+            }
+        }
+
+        // Reiniciar juego
+        function resetGame() {
+            if (confirm("¿Estás seguro de que quieres reiniciar tu IA? Perderás todo el progreso.")) {
+                localStorage.removeItem('aiPetGame');
+                
+                // Reiniciar variables
+                aiName = "AIDEN-0";
+                aiAge = 0;
+                intelligence = 50;
+                creativity = 30;
+                ethics = 70;
+                empathy = 40;
+                energy = 100;
+                happiness = 80;
+                personalityTraits = [];
+                achievements = [];
+                milestonesReached = 0;
+                conversationHistory = [];
+                
+                // Limpiar chat
+                document.getElementById('ai-message').innerHTML = '';
+                
+                // Actualizar displays
+                updateAllDisplays();
+                
+                // Mensaje inicial
+                addMessage("¡Hola! Soy tu nueva IA bebé. ¿Cómo me llamarás?", "ai");
+                addMessage("Juego reiniciado. ¡Comienza una nueva crianza!", "system");
+            }
+        }
+
+        // Exportar personalidad
+        function exportPersonality() {
+            const personalityData = {
+                nombre: aiName,
+                edad: aiAge,
+                estadisticas: {
+                    inteligencia: intelligence,
+                    creatividad: creativity,
+                    etica: ethics,
+                    empatia: empathy
+                },
+                rasgos: personalityTraits,
+                logros: achievements.length,
+                hitos: milestonesReached
+            };
+            
+            const dataStr = JSON.stringify(personalityData, null, 2);
+            const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+            
+            const exportFileDefaultName = `IA-${aiName}-Personalidad.json`;
+            
+            const linkElement = document.createElement('a');
+            linkElement.setAttribute('href', dataUri);
+            linkElement.setAttribute('download', exportFileDefaultName);
+            linkElement.click();
+            
+            addMessage("¡Personalidad exportada exitosamente!", "system");
         }
 
         // Funciones para modales
-        function showModal(type) {
-            const modal = document.getElementById('terms-modal');
-            const title = modal.querySelector('h2');
-            const content = modal.querySelector('div > div');
-            
-            switch(type) {
-                case 'terms':
-                    title.textContent = 'Términos de Uso';
-                    content.innerHTML = `
-                        <h3 style="color: var(--ancient-gold); margin: 15px 0 10px;">Licencia de Uso</h3>
-                        <p>Este juego está disponible bajo licencia Creative Commons Attribution-NonCommercial 4.0.</p>
-                        
-                        <h3 style="color: var(--ancient-gold); margin: 15px 0 10px;">Puedes:</h3>
-                        <ul style="margin: 10px 0 10px 20px;">
-                            <li>Jugar y compartir libremente</li>
-                            <li>Usar en contextos educativos</li>
-                            <li>Estudiar el código (ver fuente)</li>
-                        </ul>
-                        
-                        <h3 style="color: var(--ancient-gold); margin: 15px 0 10px;">No puedes:</h3>
-                        <ul style="margin: 10px 0 10px 20px;">
-                            <li>Usar comercialmente sin permiso</li>
-                            <li>Distribuir versiones modificadas sin atribución</li>
-                            <li>Reclamar autoría del diseño original</li>
-                        </ul>
-                    `;
-                    break;
-                    
-                case 'privacy':
-                    title.textContent = 'Política de Privacidad';
-                    content.innerHTML = `
-                        <h3 style="color: var(--ancient-gold); margin: 15px 0 10px;">Sin Recopilación de Datos</h3>
-                        <p>Este juego funciona completamente en tu navegador. No:</p>
-                        <ul style="margin: 10px 0 10px 20px;">
-                            <li>Recopila datos personales</li>
-                            <li>Usa cookies de seguimiento</li>
-                            <li>Conecta a servidores externos (excepto CDN de fuentes)</li>
-                            <li>Almacena información personal</li>
-                        </ul>
-                        
-                        <h3 style="color: var(--ancient-gold); margin: 15px 0 10px;">Datos Locales</h3>
-                        <p>El progreso del juego se guarda localmente en tu navegador y puede borrarse limpiando los datos del sitio.</p>
-                    `;
-                    break;
-                    
-                case 'license':
-                    title.textContent = 'Licencia Creative Commons';
-                    content.innerHTML = `
-                        <div style="text-align: center; margin: 20px 0;">
-                            <i class="fab fa-creative-commons" style="font-size: 3rem; color: var(--future-blue);"></i>
-                            <i class="fab fa-creative-commons-by" style="font-size: 3rem; color: var(--future-blue);"></i>
-                            <i class="fab fa-creative-commons-nc" style="font-size: 3rem; color: var(--future-blue);"></i>
-                        </div>
-                        
-                        <p>Este trabajo está licenciado bajo <strong>Creative Commons Attribution-NonCommercial 4.0 International License</strong>.</p>
-                        
-                        <h3 style="color: var(--ancient-gold); margin: 15px 0 10px;">Atribución Requerida</h3>
-                        <p>Si usas o compartes este juego, debe incluir:</p>
-                        <ul style="margin: 10px 0 10px 20px;">
-                            <li>Nombre: "Arqueólogo del Futuro"</li>
-                            <li>Autor: Innovación Digital</li>
-                            <li>Enlace al original</li>
-                            <li>Indicar si se hicieron cambios</li>
-                        </ul>
-                    `;
-                    break;
-                    
-                case 'attribution':
-                    title.textContent = 'Atribuciones';
-                    content.innerHTML = `
-                        <h3 style="color: var(--ancient-gold); margin: 15px 0 10px;">Créditos y Agradecimientos</h3>
-                        
-                        <p><strong>Diseño y Desarrollo:</strong> Equipo de Innovación Digital</p>
-                        
-                        <h3 style="color: var(--ancient-gold); margin: 15px 0 10px;">Recursos Utilizados:</h3>
-                        <ul style="margin: 10px 0 10px 20px;">
-                            <li>Font Awesome (iconos)</li>
-                            <li>Google Fonts (tipografías)</li>
-                            <li>Colores inspirados en estética cyberpunk</li>
-                        </ul>
-                        
-                        <h3 style="color: var(--ancient-gold); margin: 15px 0 10px;">Inspiraciones:</h3>
-                        <ul style="margin: 10px 0 10px 20px;">
-                            <li>Arqueología de ciencia ficción</li>
-                            <li>Teorías de viaje temporal</li>
-                            <li>Estética retro-futurista</li>
-                        </ul>
-                    `;
-                    break;
-                    
-                case 'contact':
-                    title.textContent = 'Contacto';
-                    content.innerHTML = `
-                        <h3 style="color: var(--ancient-gold); margin: 15px 0 10px;">Sobre el Proyecto</h3>
-                        <p>"Arqueólogo del Futuro" es un proyecto de juego experimental que explora conceptos de arqueología de ciencia ficción y paradojas temporales.</p>
-                        
-                        <h3 style="color: var(--ancient-gold); margin: 15px 0 10px;">Propósito Educativo</h3>
-                        <p>Diseñado para estimular la imaginación y el pensamiento crítico sobre tecnología futura y preservación del conocimiento.</p>
-                        
-                        <h3 style="color: var(--ancient-gold); margin: 15px 0 10px;">Nota del Creador</h3>
-                        <p>Este juego es un experimento en diseño interactivo. Si te gustó, ¡compártelo con otros amantes de la ciencia ficción!</p>
-                    `;
-                    break;
-            }
-            
-            modal.style.display = 'flex';
+        function showTerms() {
+            document.getElementById('terms-modal').style.display = 'flex';
+        }
+
+        function showPrivacy() {
+            addMessage("Política de Privacidad: No recopilamos datos. Todo se guarda localmente en tu navegador.", "system");
+        }
+
+        function showLicense() {
+            addMessage("Licencia: Uso educativo gratuito. Atribución requerida para uso público.", "system");
+        }
+
+        function showEthics() {
+            addMessage("Este juego explora la ética en IA: transparencia, responsabilidad y valores humanos.", "system");
+        }
+
+        function showAbout() {
+            addMessage("AI-MASCOTA: Simulador educativo sobre crianza responsable de sistemas inteligentes.", "system");
         }
 
         function closeModal() {
