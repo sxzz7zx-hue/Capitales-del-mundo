@@ -1,1 +1,1283 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capitales del Mundo - Juego Geográfico</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
 
+        body {
+            background: linear-gradient(135deg, #0c2461, #1e3799, #4a69bd);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 25px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 3.2rem;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #00c6ff, #0072ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #a0c8ff;
+            margin-bottom: 5px;
+        }
+
+        .game-modes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .mode-card {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mode-card:hover {
+            transform: translateY(-5px);
+            border-color: #00c6ff;
+            box-shadow: 0 10px 20px rgba(0, 198, 255, 0.3);
+        }
+
+        .mode-card.active {
+            background: rgba(0, 198, 255, 0.15);
+            border-color: #00c6ff;
+            box-shadow: 0 10px 20px rgba(0, 198, 255, 0.3);
+        }
+
+        .mode-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #00c6ff, #0072ff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 15px;
+        }
+
+        .mode-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #00c6ff;
+            margin-bottom: 10px;
+        }
+
+        .mode-description {
+            font-size: 0.95rem;
+            color: #a0c8ff;
+            margin-bottom: 15px;
+        }
+
+        .mode-difficulty {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            margin-top: 10px;
+        }
+
+        .difficulty-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .difficulty-dot.active {
+            background: #00c6ff;
+        }
+
+        .game-area {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .game-area.active {
+            display: block;
+        }
+
+        .game-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 20px;
+            padding: 20px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .game-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .info-box {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 15px 25px;
+            text-align: center;
+            min-width: 120px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .info-title {
+            font-size: 0.9rem;
+            color: #a0c8ff;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .info-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #00c6ff;
+        }
+
+        .timer-container {
+            position: relative;
+            width: 100px;
+            height: 100px;
+        }
+
+        .timer-circle {
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
+        }
+
+        .timer-background {
+            fill: none;
+            stroke: rgba(255, 255, 255, 0.1);
+            stroke-width: 8;
+        }
+
+        .timer-progress {
+            fill: none;
+            stroke: #00c6ff;
+            stroke-width: 8;
+            stroke-linecap: round;
+            stroke-dasharray: 283;
+            stroke-dashoffset: 283;
+            transition: stroke-dashoffset 1s linear;
+        }
+
+        .timer-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #00c6ff;
+        }
+
+        .question-container {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 30px;
+            border: 2px solid rgba(0, 198, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .question-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #00c6ff, #0072ff);
+        }
+
+        .question-type {
+            font-size: 1.1rem;
+            color: #a0c8ff;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .question {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #fff;
+            margin: 20px 0;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .flag-container {
+            margin: 20px auto;
+            width: 200px;
+            height: 120px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border: 3px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .flag {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .answers-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .answer-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 25px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .answer-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .answer-btn.correct {
+            background: rgba(76, 175, 80, 0.3);
+            border-color: #4CAF50;
+            color: #C8E6C9;
+        }
+
+        .answer-btn.incorrect {
+            background: rgba(244, 67, 54, 0.3);
+            border-color: #F44336;
+            color: #FFCDD2;
+        }
+
+        .input-container {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 30px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .input-question {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            color: #fff;
+        }
+
+        .capital-input {
+            width: 100%;
+            max-width: 500px;
+            padding: 20px;
+            font-size: 1.4rem;
+            border-radius: 12px;
+            border: 3px solid #00c6ff;
+            background: rgba(0, 0, 0, 0.3);
+            color: white;
+            text-align: center;
+            margin-bottom: 20px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .capital-input:focus {
+            border-color: #0072ff;
+            box-shadow: 0 0 20px rgba(0, 114, 255, 0.5);
+        }
+
+        .hint {
+            font-size: 1rem;
+            color: #a0c8ff;
+            margin-top: 15px;
+            font-style: italic;
+        }
+
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .control-btn {
+            padding: 16px 32px;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            min-width: 180px;
+        }
+
+        .control-btn i {
+            font-size: 1.2rem;
+        }
+
+        .submit-btn {
+            background: linear-gradient(90deg, #00c6ff, #0072ff);
+            color: white;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 198, 255, 0.3);
+        }
+
+        .skip-btn {
+            background: linear-gradient(90deg, #FF9800, #FF5722);
+            color: white;
+        }
+
+        .skip-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 152, 0, 0.3);
+        }
+
+        .back-btn {
+            background: linear-gradient(90deg, #9E9E9E, #616161);
+            color: white;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(158, 158, 158, 0.3);
+        }
+
+        .message {
+            text-align: center;
+            font-size: 1.4rem;
+            margin: 25px 0;
+            padding: 20px;
+            border-radius: 15px;
+            background: rgba(0, 0, 0, 0.2);
+            min-height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            animation: fadeIn 0.5s ease;
+        }
+
+        .message.correct {
+            background: rgba(76, 175, 80, 0.2);
+            color: #C8E6C9;
+            border-color: #4CAF50;
+        }
+
+        .message.incorrect {
+            background: rgba(244, 67, 54, 0.2);
+            color: #FFCDD2;
+            border-color: #F44336;
+        }
+
+        .result-container {
+            display: none;
+            animation: fadeIn 0.5s ease;
+            text-align: center;
+        }
+
+        .result-container.active {
+            display: block;
+        }
+
+        .result-title {
+            font-size: 2.5rem;
+            color: #00c6ff;
+            margin-bottom: 20px;
+        }
+
+        .result-score {
+            font-size: 4rem;
+            font-weight: 800;
+            color: #00c6ff;
+            margin: 20px 0;
+        }
+
+        .result-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .result-box {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+        }
+
+        .result-label {
+            font-size: 1rem;
+            color: #a0c8ff;
+            margin-bottom: 10px;
+        }
+
+        .result-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00c6ff, #0072ff);
+            border-radius: 10px;
+            transition: width 1s ease;
+        }
+
+        footer {
+            margin-top: 30px;
+            text-align: center;
+            color: #a0c8ff;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .question {
+                font-size: 1.8rem;
+            }
+            
+            .answers-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .control-btn {
+                min-width: 150px;
+                padding: 14px 20px;
+            }
+        }
+
+        /* Animaciones */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .pulse {
+            animation: pulse 0.5s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-globe-americas"></i> CAPITALES DEL MUNDO</h1>
+            <p class="subtitle">Pon a prueba tus conocimientos geográficos</p>
+        </header>
+        
+        <div class="game-modes" id="game-modes">
+            <div class="mode-card active" data-mode="multiple">
+                <div class="mode-icon">
+                    <i class="fas fa-list-ol"></i>
+                </div>
+                <div class="mode-title">Opción Múltiple</div>
+                <div class="mode-description">Elige la capital correcta entre 4 opciones</div>
+                <div class="mode-difficulty">
+                    <div class="difficulty-dot active"></div>
+                    <div class="difficulty-dot"></div>
+                    <div class="difficulty-dot"></div>
+                </div>
+            </div>
+            
+            <div class="mode-card" data-mode="input">
+                <div class="mode-icon">
+                    <i class="fas fa-keyboard"></i>
+                </div>
+                <div class="mode-title">Escribe la Capital</div>
+                <div class="mode-description">Escribe el nombre de la capital correcta</div>
+                <div class="mode-difficulty">
+                    <div class="difficulty-dot active"></div>
+                    <div class="difficulty-dot active"></div>
+                    <div class="difficulty-dot"></div>
+                </div>
+            </div>
+            
+            <div class="mode-card" data-mode="flag">
+                <div class="mode-icon">
+                    <i class="fas fa-flag"></i>
+                </div>
+                <div class="mode-title">Por Bandera</div>
+                <div class="mode-description">Adivina la capital viendo solo la bandera</div>
+                <div class="mode-difficulty">
+                    <div class="difficulty-dot active"></div>
+                    <div class="difficulty-dot active"></div>
+                    <div class="difficulty-dot active"></div>
+                </div>
+            </div>
+            
+            <div class="mode-card" data-mode="challenge">
+                <div class="mode-icon">
+                    <i class="fas fa-stopwatch"></i>
+                </div>
+                <div class="mode-title">Desafío Contrareloj</div>
+                <div class="mode-description">Responde 10 preguntas en tiempo limitado</div>
+                <div class="mode-difficulty">
+                    <div class="difficulty-dot active"></div>
+                    <div class="difficulty-dot active"></div>
+                    <div class="difficulty-dot active"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="game-area" id="game-area">
+            <div class="game-header">
+                <div class="game-info">
+                    <div class="info-box">
+                        <div class="info-title">Puntuación</div>
+                        <div class="info-value" id="score">0</div>
+                    </div>
+                    <div class="info-box">
+                        <div class="info-title">Pregunta</div>
+                        <div class="info-value" id="question-number">1/10</div>
+                    </div>
+                    <div class="info-box">
+                        <div class="info-title">Aciertos</div>
+                        <div class="info-value" id="correct-answers">0</div>
+                    </div>
+                    <div class="info-box">
+                        <div class="info-title">Racha</div>
+                        <div class="info-value" id="streak">0</div>
+                    </div>
+                </div>
+                
+                <div class="timer-container" id="timer-container">
+                    <svg class="timer-circle" viewBox="0 0 100 100">
+                        <circle class="timer-background" cx="50" cy="50" r="45"></circle>
+                        <circle class="timer-progress" cx="50" cy="50" r="45"></circle>
+                    </svg>
+                    <div class="timer-text" id="timer">30</div>
+                </div>
+            </div>
+            
+            <div class="question-container" id="question-container">
+                <div class="question-type" id="question-type">
+                    <i class="fas fa-map-marked-alt"></i> ¿Cuál es la capital de...?
+                </div>
+                <div class="question" id="question">
+                    Cargando pregunta...
+                </div>
+                <div class="flag-container" id="flag-container" style="display: none;">
+                    <img class="flag" id="flag" src="" alt="Bandera">
+                </div>
+            </div>
+            
+            <div class="answers-container" id="answers-container">
+                <!-- Las opciones se generarán con JavaScript -->
+            </div>
+            
+            <div class="input-container" id="input-container" style="display: none;">
+                <div class="input-question" id="input-question"></div>
+                <input type="text" class="capital-input" id="capital-input" placeholder="Escribe la capital aquí..." autocomplete="off">
+                <div class="hint" id="hint"></div>
+            </div>
+            
+            <div class="message" id="message" style="display: none;"></div>
+            
+            <div class="controls">
+                <button class="control-btn submit-btn" id="submit-btn">
+                    <i class="fas fa-check"></i> Verificar
+                </button>
+                <button class="control-btn skip-btn" id="skip-btn">
+                    <i class="fas fa-forward"></i> Saltar
+                </button>
+                <button class="control-btn back-btn" id="back-btn">
+                    <i class="fas fa-arrow-left"></i> Volver al Menú
+                </button>
+            </div>
+        </div>
+        
+        <div class="result-container" id="result-container">
+            <div class="result-title" id="result-title">¡Resultados!</div>
+            <div class="result-score" id="result-score">0</div>
+            
+            <div class="result-details">
+                <div class="result-box">
+                    <div class="result-label">Preguntas Acertadas</div>
+                    <div class="result-value" id="result-correct">0/10</div>
+                </div>
+                <div class="result-box">
+                    <div class="result-label">Puntuación Final</div>
+                    <div class="result-value" id="result-final-score">0</div>
+                </div>
+                <div class="result-box">
+                    <div class="result-label">Tiempo Promedio</div>
+                    <div class="result-value" id="result-time">0s</div>
+                </div>
+                <div class="result-box">
+                    <div class="result-label">Racha Máxima</div>
+                    <div class="result-value" id="result-max-streak">0</div>
+                </div>
+            </div>
+            
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+            </div>
+            
+            <div class="controls">
+                <button class="control-btn submit-btn" id="play-again-btn">
+                    <i class="fas fa-redo"></i> Jugar Otra Vez
+                </button>
+                <button class="control-btn back-btn" id="menu-btn">
+                    <i class="fas fa-home"></i> Volver al Menú
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Capitales del Mundo - Aprende geografía mientras juegas</p>
+    </footer>
+
+    <script>
+        // Base de datos de capitales del mundo
+        const capitalsDB = [
+            { country: "España", capital: "Madrid", continent: "Europa", code: "es" },
+            { country: "Francia", capital: "París", continent: "Europa", code: "fr" },
+            { country: "Italia", capital: "Roma", continent: "Europa", code: "it" },
+            { country: "Alemania", capital: "Berlín", continent: "Europa", code: "de" },
+            { country: "Reino Unido", capital: "Londres", continent: "Europa", code: "gb" },
+            { country: "Portugal", capital: "Lisboa", continent: "Europa", code: "pt" },
+            { country: "Argentina", capital: "Buenos Aires", continent: "América", code: "ar" },
+            { country: "México", capital: "Ciudad de México", continent: "América", code: "mx" },
+            { country: "Brasil", capital: "Brasilia", continent: "América", code: "br" },
+            { country: "Colombia", capital: "Bogotá", continent: "América", code: "co" },
+            { country: "Chile", capital: "Santiago", continent: "América", code: "cl" },
+            { country: "Perú", capital: "Lima", continent: "América", code: "pe" },
+            { country: "Estados Unidos", capital: "Washington D.C.", continent: "América", code: "us" },
+            { country: "Canadá", capital: "Ottawa", continent: "América", code: "ca" },
+            { country: "China", capital: "Pekín", continent: "Asia", code: "cn" },
+            { country: "Japón", capital: "Tokio", continent: "Asia", code: "jp" },
+            { country: "India", capital: "Nueva Delhi", continent: "Asia", code: "in" },
+            { country: "Rusia", capital: "Moscú", continent: "Europa/Asia", code: "ru" },
+            { country: "Australia", capital: "Canberra", continent: "Oceanía", code: "au" },
+            { country: "Nueva Zelanda", capital: "Wellington", continent: "Oceanía", code: "nz" },
+            { country: "Egipto", capital: "El Cairo", continent: "África", code: "eg" },
+            { country: "Sudáfrica", capital: "Pretoria", continent: "África", code: "za" },
+            { country: "Nigeria", capital: "Abuya", continent: "África", code: "ng" },
+            { country: "Marruecos", capital: "Rabat", continent: "África", code: "ma" },
+            { country: "Grecia", capital: "Atenas", continent: "Europa", code: "gr" },
+            { country: "Turquía", capital: "Ankara", continent: "Asia/Europa", code: "tr" },
+            { country: "Corea del Sur", capital: "Seúl", continent: "Asia", code: "kr" },
+            { country: "Corea del Norte", capital: "Pionyang", continent: "Asia", code: "kp" },
+            { country: "Vietnam", capital: "Hanói", continent: "Asia", code: "vn" },
+            { country: "Tailandia", capital: "Bangkok", continent: "Asia", code: "th" },
+            { country: "Indonesia", capital: "Yakarta", continent: "Asia", code: "id" },
+            { country: "Filipinas", capital: "Manila", continent: "Asia", code: "ph" },
+            { country: "Malasia", capital: "Kuala Lumpur", continent: "Asia", code: "my" },
+            { country: "Arabia Saudita", capital: "Riad", continent: "Asia", code: "sa" },
+            { country: "Irán", capital: "Teherán", continent: "Asia", code: "ir" },
+            { country: "Irak", capital: "Bagdad", continent: "Asia", code: "iq" },
+            { country: "Israel", capital: "Jerusalén", continent: "Asia", code: "il" },
+            { country: "Suiza", capital: "Berna", continent: "Europa", code: "ch" },
+            { country: "Suecia", capital: "Estocolmo", continent: "Europa", code: "se" },
+            { country: "Noruega", capital: "Oslo", continent: "Europa", code: "no" },
+            { country: "Finlandia", capital: "Helsinki", continent: "Europa", code: "fi" },
+            { country: "Dinamarca", capital: "Copenhague", continent: "Europa", code: "dk" },
+            { country: "Países Bajos", capital: "Ámsterdam", continent: "Europa", code: "nl" },
+            { country: "Bélgica", capital: "Bruselas", continent: "Europa", code: "be" },
+            { country: "Austria", capital: "Viena", continent: "Europa", code: "at" },
+            { country: "Polonia", capital: "Varsovia", continent: "Europa", code: "pl" },
+            { country: "República Checa", capital: "Praga", continent: "Europa", code: "cz" },
+            { country: "Hungría", capital: "Budapest", continent: "Europa", code: "hu" },
+            { country: "Ucrania", capital: "Kiev", continent: "Europa", code: "ua" },
+            { country: "Cuba", capital: "La Habana", continent: "América", code: "cu" },
+            { country: "Venezuela", capital: "Caracas", continent: "América", code: "ve" },
+            { country: "Ecuador", capital: "Quito", continent: "América", code: "ec" },
+            { country: "Bolivia", capital: "Sucre", continent: "América", code: "bo" },
+            { country: "Uruguay", capital: "Montevideo", continent: "América", code: "uy" },
+            { country: "Paraguay", capital: "Asunción", continent: "América", code: "py" },
+            { country: "Costa Rica", capital: "San José", continent: "América", code: "cr" },
+            { country: "Panamá", capital: "Ciudad de Panamá", continent: "América", code: "pa" },
+            { country: "República Dominicana", capital: "Santo Domingo", continent: "América", code: "do" },
+            { country: "Puerto Rico", capital: "San Juan", continent: "América", code: "pr" },
+            { country: "Guatemala", capital: "Ciudad de Guatemala", continent: "América", code: "gt" }
+        ];
+
+        // Variables del juego
+        let currentGameMode = 'multiple';
+        let currentQuestion = null;
+        let score = 0;
+        let correctAnswers = 0;
+        let currentQuestionIndex = 0;
+        let totalQuestions = 10;
+        let timer = 30;
+        let timerInterval = null;
+        let gameActive = false;
+        let streak = 0;
+        let maxStreak = 0;
+        let totalTime = 0;
+        let questionsAnswered = 0;
+
+        // Elementos del DOM
+        const gameModes = document.getElementById('game-modes');
+        const gameArea = document.getElementById('game-area');
+        const resultContainer = document.getElementById('result-container');
+        const scoreElement = document.getElementById('score');
+        const questionNumberElement = document.getElementById('question-number');
+        const correctAnswersElement = document.getElementById('correct-answers');
+        const streakElement = document.getElementById('streak');
+        const timerElement = document.getElementById('timer');
+        const timerProgress = document.querySelector('.timer-progress');
+        const questionElement = document.getElementById('question');
+        const questionTypeElement = document.getElementById('question-type');
+        const answersContainer = document.getElementById('answers-container');
+        const inputContainer = document.getElementById('input-container');
+        const inputQuestionElement = document.getElementById('input-question');
+        const capitalInput = document.getElementById('capital-input');
+        const hintElement = document.getElementById('hint');
+        const flagContainer = document.getElementById('flag-container');
+        const flagElement = document.getElementById('flag');
+        const messageElement = document.getElementById('message');
+        const submitBtn = document.getElementById('submit-btn');
+        const skipBtn = document.getElementById('skip-btn');
+        const backBtn = document.getElementById('back-btn');
+        const resultScoreElement = document.getElementById('result-score');
+        const resultCorrectElement = document.getElementById('result-correct');
+        const resultFinalScoreElement = document.getElementById('result-final-score');
+        const resultTimeElement = document.getElementById('result-time');
+        const resultMaxStreakElement = document.getElementById('result-max-streak');
+        const progressFillElement = document.getElementById('progress-fill');
+        const playAgainBtn = document.getElementById('play-again-btn');
+        const menuBtn = document.getElementById('menu-btn');
+
+        // Inicializar el juego
+        function initGame() {
+            // Reiniciar variables
+            score = 0;
+            correctAnswers = 0;
+            currentQuestionIndex = 0;
+            streak = 0;
+            maxStreak = 0;
+            totalTime = 0;
+            questionsAnswered = 0;
+            gameActive = true;
+            
+            // Actualizar UI
+            updateGameInfo();
+            
+            // Mostrar área de juego
+            gameArea.classList.add('active');
+            resultContainer.classList.remove('active');
+            
+            // Generar primera pregunta
+            generateQuestion();
+            
+            // Iniciar temporizador si es modo desafío
+            if (currentGameMode === 'challenge') {
+                startTimer();
+            } else {
+                timerElement.textContent = '∞';
+                timerProgress.style.strokeDashoffset = '0';
+            }
+        }
+
+        // Generar una pregunta
+        function generateQuestion() {
+            currentQuestionIndex++;
+            questionsAnswered++;
+            
+            // Actualizar número de pregunta
+            questionNumberElement.textContent = `${currentQuestionIndex}/${totalQuestions}`;
+            
+            // Seleccionar capital aleatoria
+            const correctIndex = Math.floor(Math.random() * capitalsDB.length);
+            currentQuestion = capitalsDB[correctIndex];
+            
+            // Limpiar mensaje anterior
+            messageElement.style.display = 'none';
+            messageElement.className = 'message';
+            
+            // Configurar según el modo de juego
+            switch(currentGameMode) {
+                case 'multiple':
+                    setupMultipleChoice();
+                    break;
+                case 'input':
+                    setupInputMode();
+                    break;
+                case 'flag':
+                    setupFlagMode();
+                    break;
+                case 'challenge':
+                    setupMultipleChoice(); // El desafío usa opción múltiple
+                    break;
+            }
+        }
+
+        // Configurar modo opción múltiple
+        function setupMultipleChoice() {
+            // Ocultar input, mostrar opciones
+            inputContainer.style.display = 'none';
+            answersContainer.style.display = 'grid';
+            flagContainer.style.display = 'none';
+            
+            // Configurar pregunta
+            questionElement.textContent = currentQuestion.country;
+            questionTypeElement.innerHTML = '<i class="fas fa-map-marked-alt"></i> ¿Cuál es la capital de...?';
+            
+            // Generar opciones incorrectas
+            const incorrectOptions = [];
+            while (incorrectOptions.length < 3) {
+                const randomIndex = Math.floor(Math.random() * capitalsDB.length);
+                if (randomIndex !== currentQuestion && 
+                    !incorrectOptions.includes(capitalsDB[randomIndex].capital) &&
+                    capitalsDB[randomIndex].capital !== currentQuestion.capital) {
+                    incorrectOptions.push(capitalsDB[randomIndex].capital);
+                }
+            }
+            
+            // Mezclar opciones
+            const allOptions = [currentQuestion.capital, ...incorrectOptions];
+            shuffleArray(allOptions);
+            
+            // Mostrar opciones
+            answersContainer.innerHTML = '';
+            allOptions.forEach(option => {
+                const button = document.createElement('button');
+                button.className = 'answer-btn';
+                button.textContent = option;
+                button.onclick = () => selectAnswer(option);
+                answersContainer.appendChild(button);
+            });
+            
+            // Cambiar texto del botón
+            submitBtn.style.display = 'none';
+        }
+
+        // Configurar modo escritura
+        function setupInputMode() {
+            // Ocultar opciones, mostrar input
+            answersContainer.style.display = 'none';
+            inputContainer.style.display = 'block';
+            flagContainer.style.display = 'none';
+            
+            // Configurar pregunta
+            inputQuestionElement.textContent = `¿Cuál es la capital de ${currentQuestion.country}?`;
+            questionElement.textContent = currentQuestion.country;
+            questionTypeElement.innerHTML = '<i class="fas fa-keyboard"></i> Escribe la capital:';
+            
+            // Limpiar input
+            capitalInput.value = '';
+            capitalInput.focus();
+            
+            // Mostrar pista (primera letra)
+            const firstLetter = currentQuestion.capital.charAt(0);
+            hintElement.textContent = `Pista: Empieza con "${firstLetter}"`;
+            
+            // Cambiar texto del botón
+            submitBtn.style.display = 'flex';
+            submitBtn.innerHTML = '<i class="fas fa-check"></i> Verificar';
+        }
+
+        // Configurar modo bandera
+        function setupFlagMode() {
+            // Ocultar input, mostrar opciones y bandera
+            inputContainer.style.display = 'none';
+            answersContainer.style.display = 'grid';
+            flagContainer.style.display = 'block';
+            
+            // Configurar pregunta
+            questionElement.textContent = '¿A qué país pertenece esta bandera?';
+            questionTypeElement.innerHTML = '<i class="fas fa-flag"></i> Adivina por la bandera:';
+            
+            // Cargar bandera (usando flagcdn.com)
+            flagElement.src = `https://flagcdn.com/w320/${currentQuestion.code}.png`;
+            flagElement.alt = `Bandera de ${currentQuestion.country}`;
+            
+            // Generar opciones incorrectas
+            const incorrectOptions = [];
+            while (incorrectOptions.length < 3) {
+                const randomIndex = Math.floor(Math.random() * capitalsDB.length);
+                if (randomIndex !== currentQuestion && 
+                    !incorrectOptions.includes(capitalsDB[randomIndex].country) &&
+                    capitalsDB[randomIndex].country !== currentQuestion.country) {
+                    incorrectOptions.push(capitalsDB[randomIndex].country);
+                }
+            }
+            
+            // Mezclar opciones
+            const allOptions = [currentQuestion.country, ...incorrectOptions];
+            shuffleArray(allOptions);
+            
+            // Mostrar opciones
+            answersContainer.innerHTML = '';
+            allOptions.forEach(option => {
+                const button = document.createElement('button');
+                button.className = 'answer-btn';
+                button.textContent = option;
+                button.onclick = () => selectAnswer(option, true);
+                answersContainer.appendChild(button);
+            });
+            
+            // Cambiar texto del botón
+            submitBtn.style.display = 'none';
+        }
+
+        // Seleccionar respuesta (modo múltiple/bandera)
+        function selectAnswer(selectedAnswer, isFlagMode = false) {
+            if (!gameActive) return;
+            
+            const correctAnswer = isFlagMode ? currentQuestion.country : currentQuestion.capital;
+            const isCorrect = selectedAnswer === correctAnswer;
+            
+            // Mostrar retroalimentación
+            const buttons = document.querySelectorAll('.answer-btn');
+            buttons.forEach(button => {
+                if (button.textContent === correctAnswer) {
+                    button.classList.add('correct');
+                }
+                if (button.textContent === selectedAnswer && !isCorrect) {
+                    button.classList.add('incorrect');
+                }
+                button.style.pointerEvents = 'none';
+            });
+            
+            // Procesar respuesta
+            processAnswer(isCorrect);
+        }
+
+        // Verificar respuesta (modo escritura)
+        function checkInputAnswer() {
+            if (!gameActive || !capitalInput.value.trim()) return;
+            
+            const userAnswer = capitalInput.value.trim().toLowerCase();
+            const correctAnswer = currentQuestion.capital.toLowerCase();
+            const isCorrect = userAnswer === correctAnswer;
+            
+            // Procesar respuesta
+            processAnswer(isCorrect);
+        }
+
+        // Procesar respuesta
+        function processAnswer(isCorrect) {
+            // Detener temporizador
+            if (timerInterval) {
+                clearInterval(timerInterval);
+            }
+            
+            // Calcular puntos
+            let pointsEarned = 0;
+            if (isCorrect) {
+                pointsEarned = 100;
+                
+                // Bonus por tiempo (solo en modo desafío)
+                if (currentGameMode === 'challenge' && timer > 0) {
+                    pointsEarned += timer * 2;
+                }
+                
+                // Bonus por racha
+                if (streak >= 3) {
+                    pointsEarned += streak * 10;
+                }
+                
+                // Actualizar estadísticas
+                correctAnswers++;
+                streak++;
+                if (streak > maxStreak) maxStreak = streak;
+                
+                // Mostrar mensaje
+                messageElement.textContent = `¡Correcto! +${pointsEarned} puntos`;
+                messageElement.className = 'message correct';
+            } else {
+                streak = 0;
+                messageElement.textContent = `Incorrecto. La respuesta era: ${currentQuestion.capital}`;
+                messageElement.className = 'message incorrect';
+            }
+            
+            // Mostrar mensaje
+            messageElement.style.display = 'flex';
+            
+            // Actualizar puntuación
+            score += pointsEarned;
+            updateGameInfo();
+            
+            // Siguiente pregunta o terminar juego
+            setTimeout(() => {
+                if (currentQuestionIndex < totalQuestions) {
+                    generateQuestion();
+                    if (currentGameMode === 'challenge') {
+                        resetTimer();
+                        startTimer();
+                    }
+                } else {
+                    endGame();
+                }
+            }, 2000);
+        }
+
+        // Saltar pregunta
+        function skipQuestion() {
+            if (!gameActive) return;
+            
+            // Detener temporizador
+            if (timerInterval) {
+                clearInterval(timerInterval);
+            }
+            
+            // Penalización por saltar
+            score = Math.max(0, score - 50);
+            streak = 0;
+            
+            // Mostrar respuesta
+            messageElement.textContent = `Saltada. La capital de ${currentQuestion.country} es: ${currentQuestion.capital}`;
+            messageElement.className = 'message';
+            messageElement.style.display = 'flex';
+            
+            updateGameInfo();
+            
+            // Siguiente pregunta o terminar juego
+            setTimeout(() => {
+                if (currentQuestionIndex < totalQuestions) {
+                    generateQuestion();
+                    if (currentGameMode === 'challenge') {
+                        resetTimer();
+                        startTimer();
+                    }
+                } else {
+                    endGame();
+                }
+            }, 1500);
+        }
+
+        // Actualizar información del juego
+        function updateGameInfo() {
+            scoreElement.textContent = score;
+            correctAnswersElement.textContent = correctAnswers;
+            streakElement.textContent = streak;
+        }
+
+        // Temporizador
+        function startTimer() {
+            timer = 30;
+            timerElement.textContent = timer;
+            const circumference = 2 * Math.PI * 45;
+            timerProgress.style.strokeDasharray = circumference;
+            
+            timerInterval = setInterval(() => {
+                timer--;
+                timerElement.textContent = timer;
+                
+                // Actualizar círculo de progreso
+                const progress = (timer / 30) * circumference;
+                timerProgress.style.strokeDashoffset = circumference - progress;
+                
+                // Cambiar color cuando queda poco tiempo
+                if (timer <= 10) {
+                    timerProgress.style.stroke = '#ff5252';
+                    timerElement.style.color = '#ff5252';
+                    timerElement.classList.add('pulse');
+                } else {
+                    timerProgress.style.stroke = '#00c6ff';
+                    timerElement.style.color = '#00c6ff';
+                    timerElement.classList.remove('pulse');
+                }
+                
+                // Tiempo agotado
+                if (timer <= 0) {
+                    clearInterval(timerInterval);
+                    processAnswer(false);
+                }
+            }, 1000);
+        }
+
+        function resetTimer() {
+            timer = 30;
+            timerElement.textContent = timer;
+            timerProgress.style.strokeDashoffset = '283';
+            timerProgress.style.stroke = '#00c6ff';
+            timerElement.style.color = '#00c6ff';
+            timerElement.classList.remove('pulse');
+        }
+
+        // Terminar juego
+        function endGame() {
+            gameActive = false;
+            
+            // Calcular tiempo promedio
+            const avgTime = totalQuestions > 0 ? (totalTime / totalQuestions).toFixed(1) : 0;
+            
+            // Actualizar resultados
+            resultScoreElement.textContent = score;
+            resultCorrectElement.textContent = `${correctAnswers}/${totalQuestions}`;
+            resultFinalScoreElement.textContent = score;
+            resultTimeElement.textContent = `${avgTime}s`;
+            resultMaxStreakElement.textContent = maxStreak;
+            
+            // Actualizar barra de progreso
+            const percentage = (correctAnswers / totalQuestions) * 100;
+            progressFillElement.style.width = `${percentage}%`;
+            
+            // Título según rendimiento
+            let title = '';
+            if (correctAnswers === totalQuestions) {
+                title = '¡PERFECTO! 🌟';
+            } else if (correctAnswers >= totalQuestions * 0.7) {
+                title = '¡EXCELENTE! 🎯';
+            } else if (correctAnswers >= totalQuestions * 0.5) {
+                title = '¡BUEN TRABAJO! 👍';
+            } else {
+                title = '¡SIGUE PRACTICANDO! 📚';
+            }
+            document.getElementById('result-title').textContent = title;
+            
+            // Mostrar resultados
+            gameArea.classList.remove('active');
+            resultContainer.classList.add('active');
+        }
+
+        // Volver al menú
+        function backToMenu() {
+            gameArea.classList.remove('active');
+            resultContainer.classList.remove('active');
+            gameModes.style.display = 'grid';
+        }
+
+        // Funciones auxiliares
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        // Event Listeners
+        document.querySelectorAll('.mode-card').forEach(card => {
+            card.addEventListener('click', () => {
+                // Remover clase active de todas las tarjetas
+                document.querySelectorAll('.mode-card').forEach(c => {
+                    c.classList.remove('active');
+                });
+                
+                // Agregar clase active a la tarjeta clickeada
+                card.classList.add('active');
+                
+                // Cambiar modo de juego
+                currentGameMode = card.dataset.mode;
+            });
+        });
+
+        // Iniciar juego al hacer clic en cualquier tarjeta
+        document.querySelectorAll('.mode-card').forEach(card => {
+            card.addEventListener('click', () => {
+                gameModes.style.display = 'none';
+                initGame();
+            });
+        });
+
+        submitBtn.addEventListener('click', checkInputAnswer);
+        skipBtn.addEventListener('click', skipQuestion);
+        backBtn.addEventListener('click', backToMenu);
+        playAgainBtn.addEventListener('click', initGame);
+        menuBtn.addEventListener('click', backToMenu);
+
+        // Permitir enviar con Enter
+        capitalInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                checkInputAnswer();
+            }
+        });
+
+        // Inicializar
+        updateGameInfo();
+    </script>
+</body>
+</html>
